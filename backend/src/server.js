@@ -3,15 +3,23 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRouter = require('./routes/auth');
-const scenariosRouter = require('./routes/scenarios');      // 追加
-const progressRouter = require('./routes/progress');        // 追加
-const bookmarksRouter = require('./routes/bookmarks');      // 追加
+const scenariosRouter = require('./routes/scenarios');
+const progressRouter = require('./routes/progress');
+const bookmarksRouter = require('./routes/bookmarks');
 const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
+// CORS設定
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production'
+    ? process.env.ALLOWED_ORIGINS?.split(',') || []
+    : '*',
+  credentials: true
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Health check
@@ -33,9 +41,9 @@ app.get('/api/test', (req, res) => {
 
 // Routes
 app.use('/api/auth', authRouter);
-app.use('/api/scenarios', scenariosRouter);     // 追加
-app.use('/api/progress', progressRouter);       // 追加
-app.use('/api/bookmarks', bookmarksRouter);     // 追加
+app.use('/api/scenarios', scenariosRouter);
+app.use('/api/progress', progressRouter);
+app.use('/api/bookmarks', bookmarksRouter);
 
 // Error handling middleware (最後に配置)
 app.use(errorHandler);
@@ -54,6 +62,7 @@ app.listen(PORT, '0.0.0.0', () => {
   📚 Scenarios: GET http://localhost:${PORT}/api/scenarios
   📊 Progress: GET/POST http://localhost:${PORT}/api/progress
   ⭐ Bookmarks: GET/POST/DELETE http://localhost:${PORT}/api/bookmarks
+  🌍 Environment: ${process.env.NODE_ENV}
   ========================================
   `);
-}); 
+});
