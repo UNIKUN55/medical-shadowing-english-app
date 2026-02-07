@@ -3,6 +3,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRouter = require('./routes/auth');
+const scenariosRouter = require('./routes/scenarios');      // 追加
+const progressRouter = require('./routes/progress');        // 追加
+const bookmarksRouter = require('./routes/bookmarks');      // 追加
 const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
@@ -30,6 +33,9 @@ app.get('/api/test', (req, res) => {
 
 // Routes
 app.use('/api/auth', authRouter);
+app.use('/api/scenarios', scenariosRouter);     // 追加
+app.use('/api/progress', progressRouter);       // 追加
+app.use('/api/bookmarks', bookmarksRouter);     // 追加
 
 // Error handling middleware (最後に配置)
 app.use(errorHandler);
@@ -44,7 +50,10 @@ app.listen(PORT, '0.0.0.0', () => {
   📍 URL: http://localhost:${PORT}
   🏥 Health: http://localhost:${PORT}/health
   🧪 Test: http://localhost:${PORT}/api/test
-  🔐 Register: POST http://localhost:${PORT}/api/auth/register
+  🔐 Auth: POST http://localhost:${PORT}/api/auth/register
+  📚 Scenarios: GET http://localhost:${PORT}/api/scenarios
+  📊 Progress: GET/POST http://localhost:${PORT}/api/progress
+  ⭐ Bookmarks: GET/POST/DELETE http://localhost:${PORT}/api/bookmarks
   ========================================
   `);
-});
+}); 
