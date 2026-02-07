@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
+const authRouter = require('./routes/auth');
+const { errorHandler } = require('./middleware/errorHandler');
+
 const app = express();
 
 // Middleware
@@ -25,6 +28,12 @@ app.get('/api/test', (req, res) => {
   });
 });
 
+// Routes
+app.use('/api/auth', authRouter);
+
+// Error handling middleware (最後に配置)
+app.use(errorHandler);
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, '0.0.0.0', () => {
@@ -35,6 +44,7 @@ app.listen(PORT, '0.0.0.0', () => {
   📍 URL: http://localhost:${PORT}
   🏥 Health: http://localhost:${PORT}/health
   🧪 Test: http://localhost:${PORT}/api/test
+  🔐 Register: POST http://localhost:${PORT}/api/auth/register
   ========================================
   `);
 });
