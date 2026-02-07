@@ -1,50 +1,58 @@
 import { useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { RegisterModal } from './components/RegisterModal';
+import { HomePage } from './pages/HomePage';
+import { ShadowingPage } from './pages/ShadowingPage';
 
 /**
  * メインアプリコンポーネント（認証後）
  */
 function MainApp() {
   const { user, logout } = useAuth();
+  const [currentPage, setCurrentPage] = useState('home'); // home, shadowing
+  const [selectedScenarioId, setSelectedScenarioId] = useState(null);
+
+  const handleSelectScenario = (scenarioId) => {
+    setSelectedScenarioId(scenarioId);
+    setCurrentPage('shadowing');
+  };
+
+  const handleBackToHome = () => {
+    setCurrentPage('home');
+    setSelectedScenarioId(null);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* ヘッダー */}
-      <div className="bg-blue-600 text-white p-4 shadow-md">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Medical English Shadowing</h1>
-          <div className="flex items-center space-x-4">
-            <span className="text-sm">{user?.email}</span>
-            <button
-              onClick={logout}
-              className="text-sm bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded transition-colors"
-            >
-              ログアウト
-            </button>
+      {/* ヘッダー（ホーム画面のみ表示） */}
+      {currentPage === 'home' && (
+        <div className="bg-blue-600 text-white p-4 shadow-md">
+          <div className="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 className="text-2xl font-bold">Medical English Shadowing</h1>
+            <div className="flex items-center space-x-4">
+              <span className="text-sm">{user?.email}</span>
+              <button
+                onClick={logout}
+                className="text-sm bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded transition-colors"
+              >
+                ログアウト
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* メインコンテンツ */}
-      <div className="max-w-6xl mx-auto p-6">
-        <div className="text-center py-20">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            認証成功！
-          </h2>
-          <p className="text-gray-600 mb-8">
-            ログインユーザー: <span className="font-semibold">{user?.email}</span>
-          </p>
-          <div className="bg-white rounded-lg shadow-md p-8 max-w-2xl mx-auto">
-            <p className="text-gray-700 mb-4">
-              🎉 認証機能の実装が完了しました！
-            </p>
-            <p className="text-sm text-gray-500">
-              次のPhaseでシナリオ一覧などの機能を実装していきます。
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* ページコンテンツ */}
+      {currentPage === 'home' && (
+        <HomePage onSelectScenario={handleSelectScenario} />
+      )}
+
+      {currentPage === 'shadowing' && selectedScenarioId && (
+        <ShadowingPage 
+          scenarioId={selectedScenarioId} 
+          onBack={handleBackToHome}
+        />
+      )}
     </div>
   );
 }
