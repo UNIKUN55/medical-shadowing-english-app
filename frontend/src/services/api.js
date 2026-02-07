@@ -100,3 +100,53 @@ class ApiService {
 }
 
 export const api = new ApiService();
+
+/**
+ * シナリオAPI
+ */
+export const scenariosApi = {
+  /**
+   * シナリオ一覧取得
+   */
+  getAll: () => api.get('/api/scenarios'),
+
+  /**
+   * シナリオ詳細取得
+   */
+  getById: (id) => api.get(`/api/scenarios/${id}`)
+};
+
+/**
+ * 進捗API
+ */
+export const progressApi = {
+  /**
+   * 進捗一覧取得
+   */
+  getAll: () => api.get('/api/progress'),
+
+  /**
+   * 進捗保存
+   */
+  save: (scenarioId, score) => api.post('/api/progress', { scenarioId, score })
+};
+
+/**
+ * ブックマークAPI
+ */
+export const bookmarksApi = {
+  /**
+   * ブックマーク一覧取得
+   */
+  getAll: () => api.get('/api/bookmarks'),
+
+  /**
+   * ブックマーク追加
+   */
+  add: (wordId, scenarioId) => api.post('/api/bookmarks', { wordId, scenarioId }),
+
+  /**
+   * ブックマーク削除
+   */
+  delete: (id) => api.delete(`/api/bookmarks/${id}`)
+};
