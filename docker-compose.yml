@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: med-english-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    command: npm run dev
+
+  backend:
+    build: ./backend
+    container_name: med-english-backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://user:password@db:5432/medical_english
+      - JWT_SECRET=dev-secret-key-change-in-production
+      - PORT=3000
+    depends_on:
+      - db
+    command: npm run dev
+
+  db:
+    image: postgres:15
+    container_name: med-english-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=medical_english
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d medical_english"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
