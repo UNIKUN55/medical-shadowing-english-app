@@ -52,6 +52,35 @@ export function AuthProvider({ children }) {
   };
 
   /**
+   * ログイン
+   */
+  const login = async (email) => {
+    try {
+      const data = await api.post('/api/auth/login', { email });
+      
+      // トークンを保存
+      tokenStorage.set(data.token);
+      
+      // ユーザー情報をセット
+      setUser({
+        userId: data.userId,
+        email: data.email,
+        token: data.token
+      });
+
+      return { success: true };
+    } catch (error) {
+      return { 
+        success: false, 
+        error: {
+          code: error.code,
+          message: error.message
+        }
+      };
+    }
+  };
+
+  /**
    * ログアウト
    */
   const logout = () => {
@@ -63,6 +92,7 @@ export function AuthProvider({ children }) {
     user,
     loading,
     register,
+    login,
     logout
   };
 

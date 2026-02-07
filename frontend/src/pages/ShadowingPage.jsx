@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { scenariosApi, progressApi } from '../services/api';
+import { scenariosApi, progressApi, bookmarksApi } from '../services/api';
 import { TTSService, STTService } from '../utils/speech';
 import { calculateScore, generateDiff } from '../utils/scoring';
 
@@ -17,6 +17,7 @@ export function ShadowingPage({ scenarioId, onBack }) {
   const [recognizedText, setRecognizedText] = useState('');
   const [scoreData, setScoreData] = useState(null);
   const [error, setError] = useState(null);
+  const [bookmarkedWords, setBookmarkedWords] = useState(new Set());
 
   useEffect(() => {
     loadScenario();
@@ -72,6 +73,24 @@ export function ShadowingPage({ scenarioId, onBack }) {
     setRecognizedText('');
     setScoreData(null);
     setError(null);
+  };
+
+  const handleBookmarkWord = async (wordId) => {
+    try {
+      if (bookmarkedWords.has(wordId)) {
+        alert('既にブックマークされています');
+        return;
+      }
+
+      await bookmarksApi.add(wordId, scenarioId);
+      setBookmarkedWords(new Set([...bookmarkedWords, wordId]));
+      alert('ブックマークに追加しました');
+    } catch (err) {
+      if (err.code === 'ALREADY_BOOKMARKED') {
+        setBookmarkedWords(new Set([...bookmarkedWords, wordId]));
+      }
+      alert(err.message);
+    }
   };
 
   if (loading) {
@@ -248,9 +267,25 @@ export function ShadowingPage({ scenarioId, onBack }) {
               <h3 className="text-lg font-semibold mb-4">【単語・熟語の訳】</h3>
               <div className="space-y-2">
                 {scenario.words.map((word) => (
-                  <div key={word.id} className="flex justify-between items-center bg-gray-50 p-3 rounded">
-                    <span className="font-medium">{word.word}</span>
-                    <span className="text-gray-600">{word.meaning}</span>
+                  <div 
+                    key={word.id} 
+                    className="flex justify-between items-center bg-gray-50 p-3 rounded hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="flex-1">
+                      <span className="font-medium">{word.word}</span>
+                      <span className="text-gray-600 ml-4">{word.meaning}</span>
+                    </div>
+                    <button
+                      onClick={() => handleBookmarkWord(word.id)}
+                      className={`ml-4 px-3 py-1 rounded transition-colors ${
+                        bookmarkedWords.has(word.id)
+                          ? 'bg-yellow-400 text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-yellow-400 hover:text-white'
+                      }`}
+                      title="ブックマーク"
+                    >
+                      ★
+                    </button>
                   </div>
                 ))}
               </div>

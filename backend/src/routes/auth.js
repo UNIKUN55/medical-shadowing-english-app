@@ -69,3 +69,61 @@ router.post('/register', async (req, res) => {
 });
 
 module.exports = router;
+/**
+ * POST /api/auth/login
+ * ログイン（簡易版：メールアドレスのみ）
+ */
+router.post('/login', async (req, res) => {
+  const { email } = req.body;
+
+  // バリデーション
+  if (!email || !email.includes('@')) {
+    return res.status(400).json({
+      success: false,
+      error: {
+        code: 'INVALID_EMAIL',
+        message: 'メールアドレスが不正です'
+      }
+    });
+  }
+
+  try {
+    // ユーザー存在チェック
+    const result = await db.query(
+      'SELECT id, email, created_at FROM users WHERE email = $1',
+      [email]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        error: {
+          code: 'USER_NOT_FOUND',
+          message: 'このメールアドレスは登録されていません'
+        }
+      });
+    }
+
+    const user = result.rows[0];
+    const token = generateToken(user.id, user.email);
+
+    res.json({
+      success: true,
+      data: {
+        userId: user.id,
+        email: user.email,
+        token
+      }
+    });
+
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 'SERVER_ERROR',
+        message: 'サーバーエラーが発生しました'
+      }
+    });
+  }
+});
