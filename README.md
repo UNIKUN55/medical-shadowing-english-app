@@ -1,4 +1,4 @@
-# 🏥 Medical English Shadowing App
+# Medical English Shadowing App
 
 医療英語専門のシャドウイング学習Webアプリケーション
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 📋 機能
+## 機能
 
 - ✅ ユーザー登録・ログイン（簡易認証）
 - ✅ シナリオ別シャドウイング練習（4シナリオ）
@@ -19,7 +19,7 @@
 
 ---
 
-## 🛠️ 技術スタック
+## 技術スタック
 
 ### フロントエンド
 - React 18.2
@@ -44,7 +44,7 @@
 
 ---
 
-## 🌐 本番環境
+## 本番環境
 
 ### アプリケーションURL
 ```
@@ -58,9 +58,9 @@ https://medical-english-backend-909768823641.asia-northeast1.run.app
 
 ### 推奨環境
 - **対応ブラウザ**: 
-  - ✅ Google Chrome（最新版）
-  - ✅ Microsoft Edge（最新版）
-  - ✅ Safari（最新版）
+  -  Google Chrome（最新版）
+  -  Microsoft Edge（最新版）
+  -  Safari（最新版）
 - **マイク**: 必須
 - **インターネット接続**: 必須
 
@@ -71,7 +71,7 @@ https://medical-english-backend-909768823641.asia-northeast1.run.app
 
 ---
 
-## 🚀 ローカル開発環境セットアップ
+## ローカル開発環境セットアップ
 
 ### 前提条件
 - Docker Desktop インストール済み
@@ -154,7 +154,7 @@ docker-compose exec db psql -U user -d medical_english -f /tmp/001_initial_data.
 
 ---
 
-## 📁 プロジェクト構造
+## プロジェクト構造
 ```
 medical-shadowing-english-app/
 ├── frontend/               # Reactフロントエンド
@@ -182,7 +182,7 @@ medical-shadowing-english-app/
 
 ---
 
-## 🧪 API確認
+## API確認
 
 ### ヘルスチェック
 ```bash
@@ -204,7 +204,7 @@ curl http://localhost:3000/api/scenarios \
 
 ---
 
-## 🚀 本番環境へのデプロイ
+## 本番環境へのデプロイ
 
 詳細は [DEPLOYMENT.md](./DEPLOYMENT.md) を参照
 
@@ -225,7 +225,7 @@ curl http://localhost:3000/api/scenarios \
 
 ---
 
-## 💰 運用コスト
+## 運用コスト
 
 | サービス | プラン | 月額 |
 |---------|--------|------|
@@ -238,7 +238,7 @@ curl http://localhost:3000/api/scenarios \
 
 ---
 
-## 🔧 トラブルシューティング
+## トラブルシューティング
 
 ### Docker起動エラー
 ```bash
@@ -289,7 +289,7 @@ const ALLOWED_ORIGINS = [
 
 ---
 
-## 📚 参考資料
+## 参考資料
 
 - [Cloud SQL ドキュメント](https://cloud.google.com/sql/docs)
 - [Cloud Run ドキュメント](https://cloud.google.com/run/docs)
@@ -298,23 +298,8 @@ const ALLOWED_ORIGINS = [
 
 ---
 
-## 📝 ライセンス
+## ライセンス
 
 MIT License
 
 ---
-
-## 👤 作成者
-
-Tatsuya (Godo Kaisha Uno Seika)
-
----
-
-## 🎯 今後の改善予定
-
-- [ ] Safari/Edge動作確認
-- [ ] 録音停止UI改善
-- [ ] 無音検出閾値調整
-- [ ] エラーメッセージ改善
-- [ ] シナリオ追加機能
-- [ ] 学習統計ダッシュボード
