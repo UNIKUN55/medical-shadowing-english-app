@@ -57,9 +57,17 @@ https://medical-english-backend-909768823641.asia-northeast1.run.app
 ```
 
 ### 推奨環境
-- **推奨ブラウザ**: Google Chrome（最新版）
+- **対応ブラウザ**: 
+  - ✅ Google Chrome（最新版）
+  - ✅ Microsoft Edge（最新版）
+  - ✅ Safari（最新版）
 - **マイク**: 必須
 - **インターネット接続**: 必須
+
+### 動作確認済み
+- Windows 10/11: Chrome, Edge
+- macOS: Safari, Chrome
+- iOS: Safari
 
 ---
 

@@ -7,13 +7,13 @@ import { useAuth } from '../contexts/AuthContext';
  */
 function Footer() {
   return (
-    <footer className="mt-12 py-6 border-t border-gray-200">
+     <footer className="mt-12 py-6 border-t border-gray-200">
       <div className="max-w-4xl mx-auto px-4 text-center text-sm text-gray-600">
         <p className="mb-2">
-          <strong>推奨環境:</strong> Google Chrome（最新版）
+          <strong>対応ブラウザ:</strong> Google Chrome / Microsoft Edge / Safari
         </p>
         <p className="text-xs text-gray-500">
-          本アプリはWeb Speech APIを使用しています。最適な体験のため、Google Chromeでのご利用を推奨します。
+          本アプリはWeb Speech APIを使用しています。
         </p>
       </div>
     </footer>
