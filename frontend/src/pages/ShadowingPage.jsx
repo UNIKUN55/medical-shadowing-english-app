@@ -68,6 +68,10 @@ export function ShadowingPage({ scenarioId, onBack }) {
     }
   };
 
+  const handleStopRecording = () => {
+    stt.stop();
+  };
+
   const handleRetry = () => {
     setPhase('initial');
     setRecognizedText('');
@@ -210,16 +214,23 @@ export function ShadowingPage({ scenarioId, onBack }) {
           </div>
         )}
 
-        {/* 録音中 */}
+        {/* 録音中（改善版） */}
         {phase === 'recording' && (
           <div className="bg-white rounded-lg shadow-md p-8 text-center">
-            <div className="animate-pulse">
-              <div className="w-20 h-20 bg-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <div className="text-white text-3xl">🎤</div>
-              </div>
-              <p className="text-xl text-red-600 font-bold">録音中...</p>
-              <p className="text-gray-500 text-sm mt-2">もう一度押すと終了します</p>
-            </div>
+            <button
+              onClick={handleStopRecording}
+              className="relative bg-red-600 text-white px-12 py-6 rounded-full text-xl font-bold hover:bg-red-700 transition-colors shadow-lg"
+            >
+              {/* パルスアニメーション */}
+              <span className="absolute inset-0 rounded-full bg-red-400 opacity-75 animate-ping"></span>
+              
+              {/* ボタンテキスト */}
+              <span className="relative flex flex-col items-center">
+                <span className="text-2xl mb-1">🎤 録音中...</span>
+                <span className="text-sm font-normal">(クリックで停止)</span>
+              </span>
+            </button>
+            <p className="text-gray-600 mt-4">マイクに向かって発音してください</p>
           </div>
         )}
 
