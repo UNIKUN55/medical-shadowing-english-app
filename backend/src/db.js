@@ -7,11 +7,11 @@ const pool = new Pool({
 
 // 接続確認
 pool.on('connect', () => {
-  console.log('📊 Connected to PostgreSQL database');
+  console.log('Connected to PostgreSQL database');
 });
 
 pool.on('error', (err) => {
-  console.error('❌ PostgreSQL connection error:', err);
+  console.error('PostgreSQL connection error:', err);
 });
 
 /**

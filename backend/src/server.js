@@ -90,17 +90,17 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`
   ========================================
-  🚀 Server is running!
+  Server is running!
   ========================================
-  📍 URL: http://localhost:${PORT}
-  🏥 Health: http://localhost:${PORT}/health
-  🧪 Test: http://localhost:${PORT}/api/test
-  🔐 Auth: POST http://localhost:${PORT}/api/auth/register
-  📚 Scenarios: GET http://localhost:${PORT}/api/scenarios
-  📊 Progress: GET/POST http://localhost:${PORT}/api/progress
-  ⭐ Bookmarks: GET/POST/DELETE http://localhost:${PORT}/api/bookmarks
-  🌍 Environment: ${process.env.NODE_ENV}
-  🛡️  Rate Limiting: Enabled
+  URL: http://localhost:${PORT}
+  Health: http://localhost:${PORT}/health
+  Test: http://localhost:${PORT}/api/test
+  Auth: POST http://localhost:${PORT}/api/auth/register
+  Scenarios: GET http://localhost:${PORT}/api/scenarios
+  Progress: GET/POST http://localhost:${PORT}/api/progress
+  Bookmarks: GET/POST/DELETE http://localhost:${PORT}/api/bookmarks
+  Environment: ${process.env.NODE_ENV}
+   Rate Limiting: Enabled
   ========================================
   `);
 });
