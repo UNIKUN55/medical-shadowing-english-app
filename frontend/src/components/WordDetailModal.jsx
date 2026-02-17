@@ -5,164 +5,165 @@ import { bookmarksApi } from '../services/api';
 const tts = new TTSService();
 const stt = new STTService();
 
-/**
- * 単語詳細モーダル
- */
 export function WordDetailModal({ bookmark, isOpen, onClose, onDeleted }) {
-  const [isRecording, setIsRecording] = useState(false);
-  const [recognizedText, setRecognizedText] = useState('');
+  const [recording, setRecording] = useState(false);
+  const [recognized, setRecognized] = useState('');
   const [error, setError] = useState('');
 
   if (!isOpen || !bookmark) return null;
 
-  const handlePlayWord = async () => {
-    try {
-      setError('');
-      await tts.speak(bookmark.word);
-    } catch (err) {
-      setError('音声再生エラー: ' + err.message);
-    }
+  const handlePlay = async () => {
+    try { setError(''); await tts.speak(bookmark.word); }
+    catch (e) { setError('再生エラー: ' + e.message); }
   };
 
-  const handleStartRecording = async () => {
+  const handleRecord = async () => {
     try {
-      setError('');
-      setIsRecording(true);
-      setRecognizedText('');
-      
-      const transcript = await stt.start();
-      setRecognizedText(transcript);
-    } catch (err) {
-      setError('音声認識エラー: ' + err.message);
-    } finally {
-      setIsRecording(false);
-    }
+      setError(''); setRecording(true); setRecognized('');
+      const t = await stt.start();
+      setRecognized(t);
+    } catch (e) { setError(e.message); }
+    finally { setRecording(false); }
   };
 
   const handleDelete = async () => {
-    if (!confirm('このブックマークを削除しますか？')) {
-      return;
-    }
-
-    try {
-      await bookmarksApi.delete(bookmark.id);
-      onDeleted(bookmark.id);
-      onClose();
-    } catch (err) {
-      setError('削除に失敗しました: ' + err.message);
-    }
+    if (!confirm('削除しますか？')) return;
+    try { await bookmarksApi.delete(bookmark.id); onDeleted(bookmark.id); onClose(); }
+    catch (e) { setError('削除失敗: ' + e.message); }
   };
 
-  // 例文内の単語をハイライト
-  const highlightWord = (sentence, word) => {
-    const regex = new RegExp(`\\b${word}\\b`, 'gi');
-    const parts = sentence.split(regex);
-    const matches = sentence.match(regex) || [];
-
-    return parts.map((part, index) => (
-      <span key={index}>
-        {part}
-        {matches[index] && (
-          <span className="bg-yellow-200 font-bold">
-            {matches[index]}
-          </span>
-        )}
-      </span>
+  const highlight = (sentence, word) => {
+    if (!sentence || !word) return sentence;
+    const re = new RegExp(`\\b${word}\\b`, 'gi');
+    const parts = sentence.split(re);
+    const matches = sentence.match(re) || [];
+    return parts.map((p, i) => (
+      <span key={i}>{p}{matches[i] && <span className="hl-word">{matches[i]}</span>}</span>
     ));
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          {/* ヘッダー */}
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                {bookmark.word}
-              </h2>
-              <span className="text-sm text-gray-500">
-                {bookmark.wordType === 'phrase' ? '熟語' : '単語'}
-              </span>
-            </div>
-            <button
-              onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 text-2xl"
-            >
-              ✕
-            </button>
-          </div>
+    <div style={{
+      position:'fixed', inset:0, zIndex:1000,
+      background:'rgba(0,0,0,0.88)',
+      backdropFilter:'blur(20px)',
+      WebkitBackdropFilter:'blur(20px)',
+      display:'flex', alignItems:'center', justifyContent:'center',
+      padding:'2rem',
+    }}>
+      <div className="glass fade-in" style={{
+        borderRadius:'var(--radius)', width:'100%', maxWidth:660,
+        maxHeight:'90vh', overflow:'hidden',
+        display:'flex', flexDirection:'column',
+        position:'relative',
+      }}>
+        {/* トップバー */}
+        <div style={{
+          position:'absolute', top:0, left:0, right:0, height:2,
+          background:'linear-gradient(90deg, var(--cyan), var(--magenta))',
+        }} />
 
+        {/* ヘッダー */}
+        <div style={{
+          padding:'2rem 2rem 1.4rem',
+          borderBottom:'1px solid var(--border)',
+          display:'flex', justifyContent:'space-between', alignItems:'flex-start',
+        }}>
+          <div>
+            <p style={{ fontSize:'0.62rem', fontFamily:'var(--mono)', color:'var(--cyan)', letterSpacing:'0.1em', marginBottom:'0.45rem' }}>
+              {bookmark.wordType === 'phrase' ? 'PHRASE' : 'WORD'}
+              <span style={{ color:'var(--text-3)', margin:'0 0.45rem' }}>//</span>
+              <span style={{ color:'var(--text-3)' }}>{bookmark.scenarioTitle}</span>
+            </p>
+            <h2 style={{
+              fontSize:'2.4rem', fontWeight:700, letterSpacing:'-0.03em',
+              background:'linear-gradient(135deg, var(--cyan), #fff)',
+              WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text',
+            }}>
+              {bookmark.word}
+            </h2>
+          </div>
+          <button
+            onClick={onClose}
+            style={{
+              width:38, height:38, borderRadius:'50%',
+              background:'var(--glass)', border:'1px solid var(--border)',
+              color:'var(--text-2)', cursor:'pointer', fontSize:'1rem',
+              display:'flex', alignItems:'center', justifyContent:'center',
+              transition:'all 0.2s', flexShrink:0,
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor='var(--magenta)'; e.currentTarget.style.color='var(--magenta)'; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.color='var(--text-2)'; }}
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* コンテンツ */}
+        <div style={{ padding:'1.6rem 2rem 2rem', overflowY:'auto', flex:1 }}>
           {/* 意味 */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">【意味】</h3>
-            <p className="text-xl text-gray-800">{bookmark.meaning}</p>
+          <div style={{ marginBottom:'1.4rem' }}>
+            <span className="sec-label">MEANING</span>
+            <p style={{ fontSize:'1.25rem', fontWeight:300, lineHeight:1.65 }}>{bookmark.meaning}</p>
           </div>
 
           {/* 例文 */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">【例文】</h3>
-            <p className="text-lg text-gray-800 leading-relaxed">
-              {highlightWord(bookmark.exampleSentence, bookmark.word)}
-            </p>
-            <p className="text-sm text-gray-500 mt-2">
-              シナリオ: {bookmark.scenarioTitle}
+          <div style={{ marginBottom:'1.4rem' }}>
+            <span className="sec-label" style={{ borderLeftColor:'var(--yellow)', color:'var(--yellow)', background:'linear-gradient(90deg, rgba(255,230,0,0.07), transparent)' }}>
+              EXAMPLE
+            </span>
+            <p style={{
+              fontSize:'0.98rem', lineHeight:1.9, color:'var(--text-2)',
+              background:'rgba(255,255,255,0.025)',
+              border:'1px solid rgba(255,255,255,0.055)',
+              borderRadius:10, padding:'1.1rem',
+            }}>
+              {highlight(bookmark.exampleSentence, bookmark.word)}
             </p>
           </div>
 
-          {/* 音声再生セクション */}
-          <div className="mb-6 bg-blue-50 rounded-lg p-4">
-            <h3 className="text-lg font-semibold mb-3">【発音練習】</h3>
-            <button
-              onClick={handlePlayWord}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold mb-3"
-            >
-              🔊 再生
-            </button>
+          {/* 発音 */}
+          <div style={{ marginBottom:'1.4rem' }}>
+            <span className="sec-label">PRONUNCIATION</span>
+            <button className="btn btn-primary" onClick={handlePlay}>🔊　音声再生</button>
           </div>
 
-          {/* 録音セクション */}
-          <div className="mb-6 bg-green-50 rounded-lg p-4">
-            <h3 className="text-lg font-semibold mb-3">【録音練習】</h3>
-            <button
-              onClick={handleStartRecording}
-              disabled={isRecording}
-              className={`w-full py-3 rounded-lg font-semibold transition-colors ${
-                isRecording
-                  ? 'bg-red-600 text-white'
-                  : 'bg-green-600 text-white hover:bg-green-700'
-              }`}
-            >
-              {isRecording ? '🎤 録音中...' : '🎤 録音'}
-            </button>
-
-            {recognizedText && (
-              <div className="mt-4 p-3 bg-white rounded border">
-                <p className="text-sm text-gray-600 mb-1">認識結果:</p>
-                <p className="text-lg font-medium">{recognizedText}</p>
+          {/* 録音 */}
+          <div style={{ marginBottom:'1.4rem' }}>
+            <span className="sec-label" style={{ borderLeftColor:'var(--magenta)', color:'var(--magenta)', background:'linear-gradient(90deg, rgba(255,0,128,0.07), transparent)' }}>
+              PRACTICE
+            </span>
+            {recording ? (
+              <button className="btn btn-rec" onClick={() => stt.stop()} style={{ borderRadius:'var(--radius-sm)' }}>
+                🎤　録音中...（クリックで停止）
+              </button>
+            ) : (
+              <button className="btn btn-success" onClick={handleRecord}>🎤　録音開始</button>
+            )}
+            {recognized && (
+              <div style={{
+                marginTop:'0.9rem', padding:'1.1rem',
+                background:'rgba(0,255,136,0.05)',
+                border:'1px solid rgba(0,255,136,0.18)',
+                borderRadius:10,
+              }}>
+                <p style={{ fontSize:'0.62rem', fontFamily:'var(--mono)', color:'var(--green)', letterSpacing:'0.1em', marginBottom:'0.4rem' }}>RECOGNIZED</p>
+                <p style={{ color:'var(--text-1)' }}>{recognized}</p>
               </div>
             )}
           </div>
 
-          {/* エラー表示 */}
+          {/* エラー */}
           {error && (
-            <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded">
-              <p className="text-red-600 text-sm">{error}</p>
+            <div className="err-box" style={{ marginBottom:'1.4rem' }}>
+              <p style={{ color:'#ff6eb0', fontFamily:'var(--mono)', fontSize:'0.82rem' }}>⚠ {error}</p>
             </div>
           )}
 
-          {/* アクションボタン */}
-          <div className="flex space-x-4">
-            <button
-              onClick={handleDelete}
-              className="flex-1 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold"
-            >
-              ★ ブックマーク解除
-            </button>
-            <button
-              onClick={onClose}
-              className="flex-1 bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 transition-colors font-semibold"
-            >
+          {/* アクション */}
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.9rem' }}>
+            <button className="btn btn-danger" onClick={handleDelete}>★ ブックマーク解除</button>
+            <button className="btn-ghost" onClick={onClose} style={{ width:'100%', textAlign:'center', borderRadius:'var(--radius-sm)', padding:'1.05rem' }}>
               閉じる
             </button>
           </div>

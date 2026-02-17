@@ -1,17 +1,389 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg: #06080f;
+  --glass: rgba(255,255,255,0.04);
+  --glass-hover: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08);
+  --border-active: rgba(0,240,255,0.45);
+  --text-1: #ffffff;
+  --text-2: rgba(255,255,255,0.55);
+  --text-3: rgba(255,255,255,0.28);
+  --cyan: #00f0ff;
+  --magenta: #ff0080;
+  --yellow: #ffe600;
+  --green: #00ff88;
+  --glow-c: rgba(0,240,255,0.22);
+  --glow-m: rgba(255,0,128,0.22);
+  --glow-g: rgba(0,255,136,0.22);
+  --font: 'Outfit', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font);
+  background: transparent;
+  color: var(--text-1);
+  min-height: 100vh;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
+
+/* スクロールバー */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+/* ========== 背景 ========== */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+}
+.bg-orb-1 {
+  top: -10%; right: -8%;
+  width: 560px; height: 560px;
+  background: radial-gradient(circle, rgba(0,240,255,0.18), transparent 70%);
+  animation: orbDrift 22s ease-in-out infinite;
+}
+.bg-orb-2 {
+  bottom: -12%; left: -8%;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(255,0,128,0.14), transparent 70%);
+  animation: orbDrift 28s ease-in-out infinite reverse;
+}
+.bg-orb-3 {
+  top: 35%; left: 25%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(255,230,0,0.07), transparent 70%);
+  animation: orbDrift 18s ease-in-out infinite 5s;
+}
+
+@keyframes orbDrift {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(35px,-35px) scale(1.08); }
+  66% { transform: translate(-20px,25px) scale(0.94); }
+}
+
+.bg-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ========== レイアウト ========== */
+.app-root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+/* ========== グラス ========== */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* ========== タイポ ========== */
+.grad-text {
+  background: linear-gradient(135deg, var(--cyan) 0%, #fff 55%, var(--magenta) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-cm {
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== ボタン ========== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1.05rem 1.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.975rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(255,0,128,0.1));
+  border: 1px solid rgba(0,240,255,0.38);
+  color: var(--text-1);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,240,255,0.15), rgba(255,0,128,0.15));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-primary:hover::after { opacity: 1; }
+.btn-primary:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 28px var(--glow-c), inset 0 0 20px rgba(0,240,255,0.08);
+  transform: translateY(-2px);
+}
+
+.btn-success {
+  background: rgba(0,255,136,0.08);
+  border: 1px solid rgba(0,255,136,0.38);
+  color: var(--text-1);
+}
+.btn-success:hover {
+  background: rgba(0,255,136,0.15);
+  box-shadow: 0 0 28px var(--glow-g);
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background: rgba(255,0,128,0.08);
+  border: 1px solid rgba(255,0,128,0.38);
+  color: var(--text-1);
+}
+.btn-danger:hover {
+  background: rgba(255,0,128,0.15);
+  box-shadow: 0 0 28px var(--glow-m);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  width: auto;
+  padding: 0.7rem 1.4rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--text-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: var(--mono);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--cyan);
+  color: var(--text-1);
+  box-shadow: 0 0 18px var(--glow-c);
+}
+
+.btn-rec {
+  background: rgba(255,0,128,0.12);
+  border: 1px solid rgba(255,0,128,0.55);
+  color: var(--text-1);
+  animation: recPulse 1.4s ease-in-out infinite;
+}
+@keyframes recPulse {
+  0%,100% { box-shadow: 0 0 18px var(--glow-m); }
+  50% { box-shadow: 0 0 38px rgba(255,0,128,0.45), 0 0 60px var(--glow-m); }
+}
+
+/* ========== 入力 ========== */
+.input {
+  width: 100%;
+  padding: 0.95rem 1.1rem;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  font-size: 1rem;
+  font-family: var(--font);
+  outline: none;
+  transition: all 0.3s ease;
+}
+.input::placeholder { color: var(--text-3); }
+.input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 18px var(--glow-c);
+  background: rgba(0,240,255,0.03);
+}
+
+/* ========== バッジ ========== */
+.badge-on {
+  padding: 0.3rem 0.85rem;
+  background: linear-gradient(135deg, rgba(0,240,255,0.12), rgba(255,0,128,0.12));
+  border: 1px solid rgba(0,240,255,0.45);
+  border-radius: 20px;
+  font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  font-family: var(--mono); color: var(--cyan);
+  box-shadow: 0 0 12px var(--glow-c);
+}
+.badge-off {
+  padding: 0.3rem 0.85rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  font-size: 0.68rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  font-family: var(--mono); color: var(--text-3);
+}
+
+/* ========== プログレス ========== */
+.prog-track {
+  width: 100%; height: 3px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 10px; overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+  border-radius: 10px;
+  box-shadow: 0 0 8px var(--glow-c);
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  position: relative; overflow: hidden;
+}
+.prog-fill::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: shimmer 2.5s infinite;
+}
+@keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+
+/* ========== セクションラベル ========== */
+.sec-label {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  background: linear-gradient(90deg, rgba(0,240,255,0.08), transparent);
+  border-left: 2px solid var(--cyan);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.75rem; font-weight: 600;
+  font-family: var(--mono); color: var(--cyan);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 0.85rem;
+}
+
+/* ========== タブ ========== */
+.tab {
+  padding: 0.7rem 1.6rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 0.9rem; font-weight: 500;
+  font-family: var(--mono);
+  cursor: pointer;
+  transition: all 0.28s ease;
+}
+.tab.on {
+  background: linear-gradient(135deg, rgba(0,240,255,0.09), rgba(255,0,128,0.09));
+  border-color: rgba(0,240,255,0.45);
+  color: var(--text-1);
+  box-shadow: 0 0 22px var(--glow-c), inset 0 0 18px rgba(0,240,255,0.07);
+}
+.tab:hover:not(.on) {
+  background: rgba(255,255,255,0.055);
+  border-color: rgba(255,255,255,0.14);
+  color: var(--text-1);
+}
+
+/* ========== スコア ========== */
+.score-num {
+  font-size: 5.5rem; font-weight: 700;
+  letter-spacing: -0.05em; line-height: 1;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 24px rgba(0,240,255,0.28));
+}
+
+/* ========== ハイライト ========== */
+.hl-word {
+  background: rgba(255,230,0,0.18);
+  border-radius: 3px; padding: 0 3px;
+  color: var(--yellow); font-weight: 700;
+}
+
+/* ========== テーブル ========== */
+.tbl { width: 100%; border-collapse: collapse; }
+.tbl th {
+  padding: 0.9rem 1.4rem; text-align: left;
+  font-size: 0.67rem; font-weight: 600;
+  font-family: var(--mono); color: var(--text-3);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,240,255,0.025);
+}
+.tbl td {
+  padding: 1.1rem 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.035);
+  transition: background 0.18s;
+}
+.tbl tr:hover td { background: rgba(0,240,255,0.035); }
+.tbl tr:last-child td { border-bottom: none; }
+
+/* ========== 汎用 ========== */
+.spinner {
+  width: 44px; height: 44px;
+  border: 2px solid rgba(0,240,255,0.12);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  box-shadow: 0 0 18px var(--glow-c);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.err-box {
+  background: rgba(255,0,128,0.07);
+  border: 1px solid rgba(255,0,128,0.28);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+}
+
+.fade-in { animation: fadeIn 0.55s cubic-bezier(0.4,0,0.2,1) both; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+.d1{animation-delay:0.08s} .d2{animation-delay:0.16s} .d3{animation-delay:0.24s}
+.d4{animation-delay:0.32s} .d5{animation-delay:0.4s}  .d6{animation-delay:0.48s}
