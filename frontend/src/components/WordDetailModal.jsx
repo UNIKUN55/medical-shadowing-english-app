@@ -5,169 +5,158 @@ import { bookmarksApi } from '../services/api';
 const tts = new TTSService();
 const stt = new STTService();
 
-/**
- * 単語詳細モーダル
- */
+function SecLabel({ children, color = 'var(--cyan)' }) {
+  const rgb = color === 'var(--cyan)' ? '0,240,255' : color === 'var(--magenta)' ? '255,0,128' : '255,230,0';
+  return (
+    <span style={{ display: 'block', padding: '0.48rem 0.72rem', background: `linear-gradient(90deg, rgba(${rgb},0.08), transparent)`, borderLeft: `2px solid ${color}`, borderRadius: '0 6px 6px 0', fontSize: '0.72rem', fontWeight: 600, fontFamily: 'var(--mono)', color, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.85rem' }}>
+      {children}
+    </span>
+  );
+}
+
 export function WordDetailModal({ bookmark, isOpen, onClose, onDeleted }) {
-  const [isRecording, setIsRecording] = useState(false);
-  const [recognizedText, setRecognizedText] = useState('');
+  const [recording, setRecording] = useState(false);
+  const [recognized, setRecognized] = useState('');
   const [error, setError] = useState('');
 
   if (!isOpen || !bookmark) return null;
 
-  const handlePlayWord = async () => {
-    try {
-      setError('');
-      await tts.speak(bookmark.word);
-    } catch (err) {
-      setError('音声再生エラー: ' + err.message);
-    }
+  const handlePlay = async () => {
+    try { setError(''); await tts.speak(bookmark.word); }
+    catch (e) { setError('再生エラー: ' + e.message); }
   };
 
-  const handleStartRecording = async () => {
-    try {
-      setError('');
-      setIsRecording(true);
-      setRecognizedText('');
-      
-      const transcript = await stt.start();
-      setRecognizedText(transcript);
-    } catch (err) {
-      setError('音声認識エラー: ' + err.message);
-    } finally {
-      setIsRecording(false);
-    }
+  const handleRecord = async () => {
+    try { setError(''); setRecording(true); setRecognized(''); const t = await stt.start(); setRecognized(t); }
+    catch (e) { setError(e.message); }
+    finally { setRecording(false); }
   };
 
   const handleDelete = async () => {
-    if (!confirm('このブックマークを削除しますか？')) {
-      return;
-    }
-
-    try {
-      await bookmarksApi.delete(bookmark.id);
-      onDeleted(bookmark.id);
-      onClose();
-    } catch (err) {
-      setError('削除に失敗しました: ' + err.message);
-    }
+    if (!confirm('削除しますか？')) return;
+    try { await bookmarksApi.delete(bookmark.id); onDeleted(bookmark.id); onClose(); }
+    catch (e) { setError('削除失敗: ' + e.message); }
   };
 
-  // 例文内の単語をハイライト
-  const highlightWord = (sentence, word) => {
-    const regex = new RegExp(`\\b${word}\\b`, 'gi');
-    const parts = sentence.split(regex);
-    const matches = sentence.match(regex) || [];
-
-    return parts.map((part, index) => (
-      <span key={index}>
-        {part}
-        {matches[index] && (
-          <span className="bg-yellow-200 font-bold">
-            {matches[index]}
-          </span>
-        )}
-      </span>
+  const highlight = (sentence, word) => {
+    if (!sentence || !word) return sentence;
+    const re = new RegExp(`\\b${word}\\b`, 'gi');
+    const parts = sentence.split(re);
+    const matches = sentence.match(re) || [];
+    return parts.map((p, i) => (
+      <span key={i}>{p}{matches[i] && <span style={{ background: 'rgba(255,230,0,0.18)', borderRadius: 3, padding: '0 3px', color: 'var(--yellow)', fontWeight: 700 }}>{matches[i]}</span>}</span>
     ));
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          {/* ヘッダー */}
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                {bookmark.word}
-              </h2>
-              <span className="text-sm text-gray-500">
-                {bookmark.wordType === 'phrase' ? '熟語' : '単語'}
-              </span>
-            </div>
-            <button
-              onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 text-2xl"
-            >
-              ✕
-            </button>
-          </div>
+    <div
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.88)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(1rem,4vw,2rem)' }}
+    >
+      <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(28px)', WebkitBackdropFilter: 'blur(28px)', borderRadius: 20, width: '100%', maxWidth: 640, maxHeight: '90vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative', animation: 'fadeUp 0.4s ease both' }}>
 
-          {/* 意味 */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">【意味】</h3>
-            <p className="text-xl text-gray-800">{bookmark.meaning}</p>
-          </div>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg, var(--cyan), var(--magenta))' }} />
 
-          {/* 例文 */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">【例文】</h3>
-            <p className="text-lg text-gray-800 leading-relaxed">
-              {highlightWord(bookmark.exampleSentence, bookmark.word)}
+        <div style={{ padding: 'clamp(1.5rem,4vw,2rem) clamp(1.5rem,4vw,2rem) clamp(1rem,3vw,1.4rem)', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
+          <div style={{ overflow: 'hidden' }}>
+            <p style={{ fontSize: '0.6rem', fontFamily: 'var(--mono)', color: 'var(--cyan)', letterSpacing: '0.1em', marginBottom: '0.45rem' }}>
+              {bookmark.wordType === 'phrase' ? 'PHRASE' : 'WORD'}
+              <span style={{ color: 'var(--t3)', margin: '0 0.4rem' }}>//</span>
+              <span style={{ color: 'var(--t3)' }}>{bookmark.scenarioTitle}</span>
             </p>
-            <p className="text-sm text-gray-500 mt-2">
-              シナリオ: {bookmark.scenarioTitle}
+            <h2 style={{ fontSize: 'clamp(1.8rem,5vw,2.4rem)', fontWeight: 700, letterSpacing: '-0.03em', background: 'linear-gradient(135deg, var(--cyan), #fff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {bookmark.word}
+            </h2>
+          </div>
+          <CloseBtn onClick={onClose} />
+        </div>
+
+        <div style={{ padding: 'clamp(1.2rem,3vw,1.6rem) clamp(1.5rem,4vw,2rem) clamp(1.5rem,4vw,2rem)', overflowY: 'auto', flex: 1 }}>
+
+          <div style={{ marginBottom: 'clamp(1rem,3vw,1.4rem)' }}>
+            <SecLabel>MEANING</SecLabel>
+            <p style={{ fontSize: 'clamp(1.1rem,3vw,1.25rem)', fontWeight: 300, lineHeight: 1.65 }}>{bookmark.meaning}</p>
+          </div>
+
+          <div style={{ marginBottom: 'clamp(1rem,3vw,1.4rem)' }}>
+            <SecLabel color="var(--yellow)">EXAMPLE</SecLabel>
+            <p style={{ fontSize: 'clamp(0.88rem,2.5vw,0.98rem)', lineHeight: 1.9, color: 'var(--t2)', background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.055)', borderRadius: 10, padding: 'clamp(0.9rem,2.5vw,1.1rem)' }}>
+              {highlight(bookmark.exampleSentence, bookmark.word)}
             </p>
           </div>
 
-          {/* 音声再生セクション */}
-          <div className="mb-6 bg-blue-50 rounded-lg p-4">
-            <h3 className="text-lg font-semibold mb-3">【発音練習】</h3>
-            <button
-              onClick={handlePlayWord}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold mb-3"
-            >
-              🔊 再生
-            </button>
+          <div style={{ marginBottom: 'clamp(1rem,3vw,1.4rem)' }}>
+            <SecLabel>PRONUNCIATION</SecLabel>
+            <ActionBtn onClick={handlePlay} color="cyan">🔊　音声再生</ActionBtn>
           </div>
 
-          {/* 録音セクション */}
-          <div className="mb-6 bg-green-50 rounded-lg p-4">
-            <h3 className="text-lg font-semibold mb-3">【録音練習】</h3>
-            <button
-              onClick={handleStartRecording}
-              disabled={isRecording}
-              className={`w-full py-3 rounded-lg font-semibold transition-colors ${
-                isRecording
-                  ? 'bg-red-600 text-white'
-                  : 'bg-green-600 text-white hover:bg-green-700'
-              }`}
-            >
-              {isRecording ? '🎤 録音中...' : '🎤 録音'}
-            </button>
-
-            {recognizedText && (
-              <div className="mt-4 p-3 bg-white rounded border">
-                <p className="text-sm text-gray-600 mb-1">認識結果:</p>
-                <p className="text-lg font-medium">{recognizedText}</p>
+          <div style={{ marginBottom: 'clamp(1rem,3vw,1.4rem)' }}>
+            <SecLabel color="var(--magenta)">PRACTICE</SecLabel>
+            {recording ? (
+              <button
+                onClick={() => stt.stop()}
+                style={{ width: '100%', padding: '1rem', borderRadius: 12, background: 'rgba(255,0,128,0.12)', border: '1px solid rgba(255,0,128,0.55)', color: 'var(--t1)', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 600, fontFamily: 'var(--font)', animation: 'pulse 1.4s ease-in-out infinite' }}
+              >
+                🎤　録音中...（クリックで停止）
+              </button>
+            ) : (
+              <ActionBtn onClick={handleRecord} color="green">🎤　録音開始</ActionBtn>
+            )}
+            {recognized && (
+              <div style={{ marginTop: '0.9rem', padding: '1.1rem', background: 'rgba(0,255,136,0.05)', border: '1px solid rgba(0,255,136,0.18)', borderRadius: 10 }}>
+                <p style={{ fontSize: '0.6rem', fontFamily: 'var(--mono)', color: 'var(--green)', letterSpacing: '0.1em', marginBottom: '0.4rem' }}>RECOGNIZED</p>
+                <p style={{ color: 'var(--t1)', fontSize: 'clamp(0.9rem,2.5vw,1rem)' }}>{recognized}</p>
               </div>
             )}
           </div>
 
-          {/* エラー表示 */}
           {error && (
-            <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded">
-              <p className="text-red-600 text-sm">{error}</p>
+            <div style={{ background: 'rgba(255,0,128,0.07)', border: '1px solid rgba(255,0,128,0.28)', borderRadius: 12, padding: '0.9rem 1.1rem', marginBottom: 'clamp(1rem,3vw,1.4rem)' }}>
+              <p style={{ color: '#ff6eb0', fontFamily: 'var(--mono)', fontSize: '0.82rem' }}>⚠ {error}</p>
             </div>
           )}
 
-          {/* アクションボタン */}
-          <div className="flex space-x-4">
-            <button
-              onClick={handleDelete}
-              className="flex-1 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold"
-            >
-              ★ ブックマーク解除
-            </button>
-            <button
-              onClick={onClose}
-              className="flex-1 bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 transition-colors font-semibold"
-            >
-              閉じる
-            </button>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '0.9rem' }}>
+            <ActionBtn onClick={handleDelete} color="magenta">★ ブックマーク解除</ActionBtn>
+            <CloseActionBtn onClick={onClose} />
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function ActionBtn({ onClick, children, color }) {
+  const [h, setH] = useState(false);
+  const map = { cyan: { rgb: '0,240,255', glow: 'var(--glow-c)' }, green: { rgb: '0,255,136', glow: 'var(--glow-g)' }, magenta: { rgb: '255,0,128', glow: 'var(--glow-m)' } };
+  const c = map[color];
+  return (
+    <button onClick={onClick} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{ width: '100%', padding: '1rem', borderRadius: 12, background: h ? `rgba(${c.rgb},0.15)` : `rgba(${c.rgb},0.07)`, border: `1px solid rgba(${c.rgb},${h ? 0.55 : 0.35})`, color: 'var(--t1)', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 600, fontFamily: 'var(--font)', transition: 'all 0.3s ease', boxShadow: h ? `0 0 24px ${c.glow}` : 'none', transform: h ? 'translateY(-2px)' : 'none' }}
+    >
+      {children}
+    </button>
+  );
+}
+
+function CloseActionBtn({ onClick }) {
+  const [h, setH] = useState(false);
+  return (
+    <button onClick={onClick} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{ width: '100%', padding: '1rem', borderRadius: 12, background: 'rgba(255,255,255,0.04)', border: `1px solid ${h ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.08)'}`, color: 'var(--t2)', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 600, fontFamily: 'var(--font)', transition: 'all 0.3s ease' }}
+    >
+      閉じる
+    </button>
+  );
+}
+
+function CloseBtn({ onClick }) {
+  const [h, setH] = useState(false);
+  return (
+    <button onClick={onClick} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', border: `1px solid ${h ? 'var(--magenta)' : 'rgba(255,255,255,0.1)'}`, color: h ? 'var(--magenta)' : 'var(--t2)', cursor: 'pointer', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', flexShrink: 0 }}
+    >
+      ✕
+    </button>
   );
 }

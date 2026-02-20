@@ -4,168 +4,167 @@ import { TTSService } from '../utils/speech';
 
 const tts = new TTSService();
 
-/**
- * 単語リスト画面
- */
 export function WordListPage({ onSelectWord }) {
   const [bookmarks, setBookmarks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    loadBookmarks();
-  }, []);
+  useEffect(() => { load(); }, []);
 
-  const loadBookmarks = async () => {
+  const load = async () => {
     try {
-      setLoading(true);
-      setError(null);
+      setLoading(true); setError(null);
       const data = await bookmarksApi.getAll();
       setBookmarks(data.bookmarks);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    } catch (e) { setError(e.message); }
+    finally { setLoading(false); }
   };
 
-  const handlePlayWord = async (word, e) => {
+  const handlePlay = async (word, e) => {
     e.stopPropagation();
-    try {
-      await tts.speak(word);
-    } catch (err) {
-      console.error('TTS error:', err);
-    }
+    try { await tts.speak(word); } catch (e) { console.error(e); }
   };
 
-  const handleDeleteBookmark = async (bookmarkId, e) => {
+  const handleDelete = async (id, e) => {
     e.stopPropagation();
-    
-    if (!confirm('このブックマークを削除しますか？')) {
-      return;
-    }
-
+    if (!confirm('削除しますか？')) return;
     try {
-      await bookmarksApi.delete(bookmarkId);
-      // リストから削除
-      setBookmarks(bookmarks.filter(b => b.id !== bookmarkId));
-    } catch (err) {
-      alert('削除に失敗しました: ' + err.message);
-    }
+      await bookmarksApi.delete(id);
+      setBookmarks(b => b.filter(x => x.id !== id));
+    } catch (e) { alert('削除失敗: ' + e.message); }
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent mx-auto mb-4"></div>
-          <p className="text-gray-600">読み込み中...</p>
-        </div>
-      </div>
-    );
-  }
+  if (loading) return (
+    <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1.4rem' }}>
+      <div style={{ width: 44, height: 44, border: '2px solid rgba(0,240,255,0.15)', borderTopColor: 'var(--cyan)', borderRadius: '50%', animation: 'spin 0.75s linear infinite', boxShadow: '0 0 18px var(--glow-c)' }} />
+      <p style={{ color: 'var(--t2)', fontFamily: 'var(--mono)', fontSize: '0.78rem', letterSpacing: '0.1em' }}>LOADING...</p>
+    </div>
+  );
 
-  if (error) {
-    return (
-      <div className="max-w-2xl mx-auto py-20 px-4">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-          <p className="text-red-600">エラーが発生しました: {error}</p>
-          <button
-            onClick={loadBookmarks}
-            className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-          >
-            再読み込み
-          </button>
-        </div>
+  if (error) return (
+    <div style={{ maxWidth: 800, margin: '0 auto', padding: '4rem clamp(1rem,4vw,2rem)' }}>
+      <div style={{ background: 'rgba(255,0,128,0.07)', border: '1px solid rgba(255,0,128,0.28)', borderRadius: 14, padding: '1rem 1.2rem', marginBottom: '1rem' }}>
+        <p style={{ color: '#ff6eb0', fontFamily: 'var(--mono)', fontSize: '0.88rem' }}>ERROR: {error}</p>
       </div>
-    );
-  }
+    </div>
+  );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">あなたの単語リスト</h2>
-        <p className="text-gray-600">
-          {bookmarks.length}個の単語・熟語
-        </p>
-      </div>
+    <div style={{ minHeight: '100vh' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: 'clamp(1.5rem,4vw,2.5rem) clamp(1rem,4vw,2rem)' }}>
 
-      {bookmarks.length === 0 ? (
-        <div className="bg-white rounded-lg shadow-md p-12 text-center">
-          <div className="text-6xl mb-4">📚</div>
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">
-            ブックマークがありません
-          </h3>
-          <p className="text-gray-600">
-            シャドウイング画面で単語をブックマークすると、ここに表示されます
+        <div style={{ marginBottom: 'clamp(1.8rem,4vw,2.8rem)', animation: 'fadeUp 0.55s ease both' }}>
+          <p style={{ fontSize: '0.65rem', fontFamily: 'var(--mono)', color: 'var(--t3)', letterSpacing: '0.15em', marginBottom: '0.7rem' }}>
+            VOCABULARY LIBRARY
+            <span style={{ color: 'var(--cyan)', marginLeft: '0.6rem' }}>// {bookmarks.length} words</span>
           </p>
+          <h2 style={{ fontSize: 'clamp(1.7rem,4vw,2.8rem)', fontWeight: 300, letterSpacing: '-0.03em' }}>
+            あなたの
+            <span style={{ background: 'linear-gradient(135deg,var(--cyan),var(--magenta))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              単語リスト
+            </span>
+          </h2>
         </div>
-      ) : (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  単語・熟語
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  意味
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  シナリオ
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  アクション
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {bookmarks.map((bookmark) => (
-                <tr
-                  key={bookmark.id}
-                  className="hover:bg-gray-50 cursor-pointer"
-                  onClick={() => onSelectWord(bookmark)}
-                >
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <span className="text-lg font-semibold text-gray-900">
-                        {bookmark.word}
-                      </span>
-                      <span className="ml-2 text-xs text-gray-500">
-                        ({bookmark.wordType === 'phrase' ? '熟語' : '単語'})
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-gray-700">{bookmark.meaning}</span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-gray-600">
-                      {bookmark.scenarioTitle}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right space-x-2">
-                    <button
-                      onClick={(e) => handlePlayWord(bookmark.word, e)}
-                      className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors"
-                      title="再生"
-                    >
-                      🔊
-                    </button>
-                    <button
-                      onClick={(e) => handleDeleteBookmark(bookmark.id, e)}
-                      className="inline-flex items-center px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors"
-                      title="削除"
-                    >
-                      🗑️
-                    </button>
-                  </td>
-                </tr>
+
+        {bookmarks.length === 0 ? (
+          <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderRadius: 18, padding: 'clamp(3rem,8vw,5rem)', textAlign: 'center', animation: 'fadeUp 0.55s ease both 0.1s' }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1.2rem', opacity: 0.35 }}>📚</div>
+            <p style={{ color: 'var(--t2)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>ブックマークがありません</p>
+            <p style={{ color: 'var(--t3)', fontFamily: 'var(--mono)', fontSize: '0.78rem' }}>シャドウイング後に単語を追加してください</p>
+          </div>
+        ) : (
+          window.innerWidth < 640 ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', animation: 'fadeUp 0.55s ease both 0.1s' }}>
+              {bookmarks.map(b => (
+                <MobileWordCard key={b.id} bookmark={b} onSelect={onSelectWord} onPlay={handlePlay} onDelete={handleDelete} />
               ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+            </div>
+          ) : (
+            <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderRadius: 18, overflow: 'hidden', animation: 'fadeUp 0.55s ease both 0.1s' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr>
+                    {['WORD / PHRASE', 'MEANING', 'SCENARIO', 'ACTIONS'].map((h, i) => (
+                      <th key={h} style={{ padding: '0.9rem 1.4rem', textAlign: i === 3 ? 'right' : 'left', fontSize: '0.65rem', fontWeight: 600, fontFamily: 'var(--mono)', color: 'var(--t3)', textTransform: 'uppercase', letterSpacing: '0.1em', borderBottom: '1px solid rgba(255,255,255,0.08)', background: 'rgba(0,240,255,0.025)' }}>
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {bookmarks.map(b => (
+                    <WordRow key={b.id} bookmark={b} onSelect={onSelectWord} onPlay={handlePlay} onDelete={handleDelete} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )
+        )}
+      </div>
     </div>
+  );
+}
+
+function WordRow({ bookmark, onSelect, onPlay, onDelete }) {
+  const [h, setH] = useState(false);
+  return (
+    <tr
+      onClick={() => onSelect(bookmark)}
+      onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{ cursor: 'pointer', borderLeft: `2px solid ${h ? 'var(--cyan)' : 'transparent'}`, transition: 'all 0.18s', background: h ? 'rgba(0,240,255,0.035)' : 'transparent' }}
+    >
+      <td style={{ padding: '1.1rem 1.4rem', borderBottom: '1px solid rgba(255,255,255,0.035)' }}>
+        <div style={{ fontWeight: 600, color: 'var(--t1)', marginBottom: '0.15rem' }}>{bookmark.word}</div>
+        <div style={{ fontSize: '0.6rem', fontFamily: 'var(--mono)', color: 'var(--t3)', letterSpacing: '0.06em' }}>
+          {bookmark.wordType === 'phrase' ? 'PHRASE' : 'WORD'}
+        </div>
+      </td>
+      <td style={{ padding: '1.1rem 1.4rem', color: 'var(--t2)', fontSize: '0.95rem', borderBottom: '1px solid rgba(255,255,255,0.035)' }}>{bookmark.meaning}</td>
+      <td style={{ padding: '1.1rem 1.4rem', color: 'var(--t3)', fontFamily: 'var(--mono)', fontSize: '0.75rem', borderBottom: '1px solid rgba(255,255,255,0.035)' }}>{bookmark.scenarioTitle}</td>
+      <td style={{ padding: '1.1rem 1.4rem', textAlign: 'right', borderBottom: '1px solid rgba(255,255,255,0.035)' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.45rem' }}>
+          <ActionBtn color="cyan" onClick={e => onPlay(bookmark.word, e)}>🔊</ActionBtn>
+          <ActionBtn color="magenta" onClick={e => onDelete(bookmark.id, e)}>🗑️</ActionBtn>
+        </div>
+      </td>
+    </tr>
+  );
+}
+
+function MobileWordCard({ bookmark, onSelect, onPlay, onDelete }) {
+  return (
+    <div
+      onClick={() => onSelect(bookmark)}
+      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderRadius: 14, padding: '1.1rem', cursor: 'pointer' }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+        <div>
+          <span style={{ fontWeight: 600, color: 'var(--t1)', fontSize: '1rem' }}>{bookmark.word}</span>
+          <span style={{ fontSize: '0.6rem', fontFamily: 'var(--mono)', color: 'var(--t3)', marginLeft: '0.6rem', letterSpacing: '0.06em' }}>
+            {bookmark.wordType === 'phrase' ? 'PHRASE' : 'WORD'}
+          </span>
+        </div>
+        <div style={{ display: 'flex', gap: '0.4rem' }}>
+          <ActionBtn color="cyan" onClick={e => onPlay(bookmark.word, e)}>🔊</ActionBtn>
+          <ActionBtn color="magenta" onClick={e => onDelete(bookmark.id, e)}>🗑️</ActionBtn>
+        </div>
+      </div>
+      <p style={{ color: 'var(--t2)', fontSize: '0.9rem', marginBottom: '0.3rem' }}>{bookmark.meaning}</p>
+      <p style={{ color: 'var(--t3)', fontFamily: 'var(--mono)', fontSize: '0.7rem' }}>{bookmark.scenarioTitle}</p>
+    </div>
+  );
+}
+
+function ActionBtn({ color, onClick, children }) {
+  const [h, setH] = useState(false);
+  const isCyan = color === 'cyan';
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{ padding: '0.42rem 0.82rem', borderRadius: 8, background: h ? (isCyan ? 'rgba(0,240,255,0.18)' : 'rgba(255,0,128,0.18)') : (isCyan ? 'rgba(0,240,255,0.07)' : 'rgba(255,0,128,0.07)'), border: `1px solid ${isCyan ? 'rgba(0,240,255,0.3)' : 'rgba(255,0,128,0.3)'}`, cursor: 'pointer', transition: 'all 0.18s', boxShadow: h ? (isCyan ? '0 0 12px var(--glow-c)' : '0 0 12px var(--glow-m)') : 'none', fontSize: '0.85rem' }}
+    >
+      {children}
+    </button>
   );
 }
