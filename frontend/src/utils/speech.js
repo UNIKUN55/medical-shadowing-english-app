@@ -84,6 +84,11 @@ export class STTService {
     this.isRecording = false;
     this.silenceTimeout = null;
     this.finalTranscript = '';
+    
+    // 録音機能の追加
+    this.mediaRecorder = null;
+    this.audioChunks = [];
+    this.recordedBlob = null;
   }
 
   /**
@@ -107,6 +112,32 @@ export class STTService {
   }
 
   /**
+   * 録音開始（音声ファイル保存用）
+   */
+  async startRecording() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      this.mediaRecorder = new MediaRecorder(stream);
+      this.audioChunks = [];
+      
+      this.mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          this.audioChunks.push(event.data);
+        }
+      };
+
+      this.mediaRecorder.onstop = () => {
+        this.recordedBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+        stream.getTracks().forEach(track => track.stop());
+      };
+
+      this.mediaRecorder.start();
+    } catch (err) {
+      console.error('録音デバイスアクセスエラー:', err);
+    }
+  }
+
+  /**
    * 録音開始
    */
   start() {
@@ -118,6 +149,10 @@ export class STTService {
 
       this.finalTranscript = '';
       this.isRecording = true;
+      this.recordedBlob = null;
+
+      // 録音開始（音声ファイル保存用）
+      this.startRecording();
 
       // 結果イベント（改善版：無音検出調整）
       this.recognition.onresult = (event) => {
@@ -142,6 +177,11 @@ export class STTService {
         this.isRecording = false;
         if (this.silenceTimeout) {
           clearTimeout(this.silenceTimeout);
+        }
+
+        // 録音停止
+        if (this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+          this.mediaRecorder.stop();
         }
 
         let errorMessage = '音声認識エラーが発生しました';
@@ -176,6 +216,11 @@ export class STTService {
           clearTimeout(this.silenceTimeout);
         }
 
+        // 録音停止
+        if (this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+          this.mediaRecorder.stop();
+        }
+
         if (this.finalTranscript) {
           resolve(this.finalTranscript);
         } else {
@@ -202,6 +247,33 @@ export class STTService {
       if (this.silenceTimeout) {
         clearTimeout(this.silenceTimeout);
       }
+    }
+    if (this.mediaRecorder && this.mediaRecorder.state !== 'inactive') {
+      this.mediaRecorder.stop();
+    }
+  }
+
+  /**
+   * 録音した音声のURLを取得
+   */
+  getRecordedAudio() {
+    if (this.recordedBlob) {
+      return URL.createObjectURL(this.recordedBlob);
+    }
+    return null;
+  }
+
+  /**
+   * 録音データをクリア
+   */
+  clearRecordedAudio() {
+    if (this.recordedBlob) {
+      const url = this.getRecordedAudio();
+      if (url) {
+        URL.revokeObjectURL(url);
+      }
+      this.recordedBlob = null;
+      this.audioChunks = [];
     }
   }
 }
