@@ -67,7 +67,7 @@ export function ShadowingPage({ scenarioId, onBack }) {
   const [scenario, setScenario] = useState(null);
   const [loading, setLoading] = useState(true);
   const [phase, setPhase] = useState('initial');
-  const [showEnglish, setShowEnglish] = useState(true);
+  const [showEnglish, setShowEnglish] = useState(false);
   const [recognizedText, setRecognizedText] = useState('');
   const [scoreData, setScoreData] = useState(null);
   const [error, setError] = useState(null);
