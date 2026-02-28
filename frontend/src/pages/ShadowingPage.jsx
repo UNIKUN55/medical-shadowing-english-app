@@ -68,11 +68,12 @@ export function ShadowingPage({ scenarioId, onBack }) {
   const [loading, setLoading] = useState(true);
   const [phase, setPhase] = useState('initial');
   const [showEnglish, setShowEnglish] = useState(false);
-  const [playbackRate, setPlaybackRate] = useState(0.75);
+  const [playbackRate, setPlaybackRate] = useState(1.0);
   const [recognizedText, setRecognizedText] = useState('');
   const [scoreData, setScoreData] = useState(null);
   const [error, setError] = useState(null);
   const [bookmarkedWords, setBookmarkedWords] = useState(new Set());
+  const [recordedAudioUrl, setRecordedAudioUrl] = useState(null);
   const isManualStopRef = useRef(false);
 
   useEffect(() => { loadScenario(); }, [scenarioId]);
@@ -105,6 +106,12 @@ export function ShadowingPage({ scenarioId, onBack }) {
       const transcript = await stt.start();
       setRecognizedText(transcript);
       setPhase('evaluating');
+      
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      const audioUrl = stt.getRecordedAudio();
+      setRecordedAudioUrl(audioUrl);
+      
       const result = calculateScore(scenario.sentenceEn, transcript);
       setScoreData(result);
       await progressApi.save(scenarioId, result.score);
@@ -126,10 +133,24 @@ export function ShadowingPage({ scenarioId, onBack }) {
   };
 
   const handleRetry = () => {
+    if (recordedAudioUrl) {
+      stt.clearRecordedAudio();
+      setRecordedAudioUrl(null);
+    }
+    
     setPhase('initial');
     setRecognizedText('');
     setScoreData(null);
     setError(null);
+  };
+
+  const handleBack = () => {
+    if (recordedAudioUrl) {
+      stt.clearRecordedAudio();
+      setRecordedAudioUrl(null);
+    }
+    
+    onBack();
   };
 
   const handleBookmarkWord = async (wordId) => {
@@ -156,7 +177,7 @@ export function ShadowingPage({ scenarioId, onBack }) {
       <div style={{ background: 'rgba(255,0,128,0.07)', border: '1px solid rgba(255,0,128,0.28)', borderRadius: 14, padding: '1rem 1.2rem', marginBottom: '1.2rem' }}>
         <p style={{ color: '#ff6eb0', fontFamily: 'var(--mono)', fontSize: '0.88rem' }}>{error}</p>
       </div>
-      <Btn onClick={onBack} variant="ghost" style={{ width: 'auto' }}>← ホームに戻る</Btn>
+      <Btn onClick={handleBack} variant="ghost" style={{ width: 'auto' }}>← ホームに戻る</Btn>
     </div>
   );
 
@@ -185,7 +206,7 @@ export function ShadowingPage({ scenarioId, onBack }) {
           display: 'flex', alignItems: 'center',
           gap: 'clamp(0.8rem,2vw,1.4rem)', height: 62,
         }}>
-          <Btn onClick={onBack} variant="ghost" style={{ width: 'auto', padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
+          <Btn onClick={handleBack} variant="ghost" style={{ width: 'auto', padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
             ← 戻る
           </Btn>
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.7rem', overflow: 'hidden' }}>
@@ -343,7 +364,13 @@ export function ShadowingPage({ scenarioId, onBack }) {
               </GlassCard>
               <GlassCard style={{ padding: 'clamp(1.2rem,3vw,1.8rem)' }}>
                 <SecLabel color="var(--magenta)">YOUR SPEECH</SecLabel>
-                <p style={{ fontSize: 'clamp(0.9rem,2.5vw,1rem)', lineHeight: 1.85, color: 'var(--t1)' }}>{recognizedText}</p>
+                <p style={{ fontSize: 'clamp(0.9rem,2.5vw,1rem)', lineHeight: 1.85, color: 'var(--t1)', marginBottom: recordedAudioUrl ? '1rem' : 0 }}>{recognizedText}</p>
+                {recordedAudioUrl && (
+                  <>
+                    <audio controls src={recordedAudioUrl} controlsList="nodownload noplaybackrate" style={{ width: '100%', height: 40, marginTop: '0.5rem' }} />
+                    <a href={recordedAudioUrl} download="my-recording.webm" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', padding: '0.4rem 0.8rem', borderRadius: 6, border: '1px solid rgba(0,240,255,0.3)', background: 'rgba(0,240,255,0.08)', color: 'var(--cyan)', fontSize: '0.75rem', fontFamily: 'var(--mono)', textDecoration: 'none', transition: 'all 0.2s', cursor: 'pointer' }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(0,240,255,0.15)'; e.currentTarget.style.borderColor = 'var(--cyan)'; }} onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(0,240,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(0,240,255,0.3)'; }}>ダウンロード</a>
+                  </>
+                )}
               </GlassCard>
             </div>
 
@@ -363,7 +390,7 @@ export function ShadowingPage({ scenarioId, onBack }) {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem' }}>
               <Btn onClick={handleRetry}>もう一度挑戦</Btn>
-              <Btn onClick={onBack} variant="ghost" style={{ width: '100%', borderRadius: 12, padding: '1rem' }}>ホームに戻る</Btn>
+              <Btn onClick={handleBack} variant="ghost" style={{ width: '100%', borderRadius: 12, padding: '1rem' }}>ホームに戻る</Btn>
             </div>
           </div>
         )}
