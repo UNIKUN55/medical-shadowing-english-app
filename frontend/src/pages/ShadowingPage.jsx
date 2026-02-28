@@ -68,12 +68,12 @@ export function ShadowingPage({ scenarioId, onBack }) {
   const [loading, setLoading] = useState(true);
   const [phase, setPhase] = useState('initial');
   const [showEnglish, setShowEnglish] = useState(false);
+  const [playbackRate, setPlaybackRate] = useState(0.75);
   const [recognizedText, setRecognizedText] = useState('');
   const [scoreData, setScoreData] = useState(null);
   const [error, setError] = useState(null);
   const [bookmarkedWords, setBookmarkedWords] = useState(new Set());
-  const isManualStopRef = useRef(false); // ← この行を追加
-
+  const isManualStopRef = useRef(false);
 
   useEffect(() => { loadScenario(); }, [scenarioId]);
 
@@ -89,7 +89,7 @@ export function ShadowingPage({ scenarioId, onBack }) {
   const handlePlay = async () => {
     try {
       setPhase('playing');
-      await tts.speak(scenario.sentenceEn);
+      await tts.speak(scenario.sentenceEn, { rate: playbackRate });
       setPhase('waiting');
     } catch (err) {
       setError('音声再生エラー: ' + err.message);
@@ -98,33 +98,32 @@ export function ShadowingPage({ scenarioId, onBack }) {
   };
 
   const handleStartRecording = async () => {
-  isManualStopRef.current = false; // 開始時にリセット
-  try {
-    setPhase('recording');
-    setRecognizedText('');
-    const transcript = await stt.start();
-    setRecognizedText(transcript);
-    setPhase('evaluating');
-    const result = calculateScore(scenario.sentenceEn, transcript);
-    setScoreData(result);
-    await progressApi.save(scenarioId, result.score);
-    setPhase('result');
-  } catch (err) {
-    // 手動停止の場合はエラー処理をスキップ
-    if (!isManualStopRef.current) {
-      setError('音声認識エラー: ' + err.message);
-      setPhase('waiting');
+    isManualStopRef.current = false;
+    try {
+      setPhase('recording');
+      setRecognizedText('');
+      const transcript = await stt.start();
+      setRecognizedText(transcript);
+      setPhase('evaluating');
+      const result = calculateScore(scenario.sentenceEn, transcript);
+      setScoreData(result);
+      await progressApi.save(scenarioId, result.score);
+      setPhase('result');
+    } catch (err) {
+      if (!isManualStopRef.current) {
+        setError('音声認識エラー: ' + err.message);
+        setPhase('waiting');
+      }
     }
-  }
-};
+  };
 
   const handleRetryRecording = () => {
-  isManualStopRef.current = true; // refを使う
-  stt.stop();
-  setError(null);
-  setRecognizedText('');
-  setPhase('waiting');
-};
+    isManualStopRef.current = true;
+    stt.stop();
+    setError(null);
+    setRecognizedText('');
+    setPhase('waiting');
+  };
 
   const handleRetry = () => {
     setPhase('initial');
@@ -211,12 +210,52 @@ export function ShadowingPage({ scenarioId, onBack }) {
         {phase === 'initial' && (
           <GlassCard style={{ padding: 'clamp(1.5rem,4vw,3rem)', textAlign: 'center', animation: 'fadeUp 0.5s ease both' }}>
             <SecLabel style={{ display: 'inline-block', marginBottom: 'clamp(1.2rem,3vw,1.8rem)' }}>STEP 01 — LISTEN</SecLabel>
+            
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer', fontSize: '0.85rem', color: 'var(--t2)', fontFamily: 'var(--mono)' }}>
                 <input type="checkbox" checked={showEnglish} onChange={e => setShowEnglish(e.target.checked)} style={{ accentColor: 'var(--cyan)', width: 14, height: 14 }} />
                 英文を表示
               </label>
             </div>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: '0.72rem', color: 'var(--t3)', fontFamily: 'var(--mono)', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>再生速度</p>
+              <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
+                <button
+                  onClick={() => setPlaybackRate(0.75)}
+                  style={{
+                    padding: '0.5rem 1.2rem',
+                    borderRadius: 8,
+                    border: playbackRate === 0.75 ? '1px solid var(--cyan)' : '1px solid rgba(255,255,255,0.1)',
+                    background: playbackRate === 0.75 ? 'rgba(0,240,255,0.1)' : 'rgba(255,255,255,0.03)',
+                    color: playbackRate === 0.75 ? 'var(--cyan)' : 'var(--t3)',
+                    fontSize: '0.8rem',
+                    fontFamily: 'var(--mono)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  0.75x
+                </button>
+                <button
+                  onClick={() => setPlaybackRate(1.0)}
+                  style={{
+                    padding: '0.5rem 1.2rem',
+                    borderRadius: 8,
+                    border: playbackRate === 1.0 ? '1px solid var(--cyan)' : '1px solid rgba(255,255,255,0.1)',
+                    background: playbackRate === 1.0 ? 'rgba(0,240,255,0.1)' : 'rgba(255,255,255,0.03)',
+                    color: playbackRate === 1.0 ? 'var(--cyan)' : 'var(--t3)',
+                    fontSize: '0.8rem',
+                    fontFamily: 'var(--mono)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  1.0x
+                </button>
+              </div>
+            </div>
+
             {showEnglish && <p style={sentenceStyle}>{scenario.sentenceEn}</p>}
             <Btn onClick={handlePlay} style={{ maxWidth: 260, margin: '0 auto' }}>🔊　音声を再生する</Btn>
             <p style={{ marginTop: '1rem', fontSize: '0.7rem', color: 'var(--t3)', fontFamily: 'var(--mono)', letterSpacing: '0.05em' }}>PRESS PLAY TO BEGIN</p>
@@ -284,6 +323,7 @@ export function ShadowingPage({ scenarioId, onBack }) {
             <p style={{ color: 'var(--t2)', fontFamily: 'var(--mono)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>ANALYZING...</p>
           </GlassCard>
         )}
+
         {phase === 'result' && scoreData && (
           <div style={{ animation: 'fadeUp 0.5s ease both' }}>
             <GlassCard style={{ padding: 'clamp(1.5rem,4vw,2.8rem)', textAlign: 'center', marginBottom: '1.2rem' }}>
