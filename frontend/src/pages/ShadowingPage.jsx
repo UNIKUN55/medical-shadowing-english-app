@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useRef } from 'react';
 import { scenariosApi, progressApi, bookmarksApi } from '../services/api';
 import { TTSService, STTService } from '../utils/speech';
 import { calculateScore } from '../utils/scoring';
@@ -72,6 +72,8 @@ export function ShadowingPage({ scenarioId, onBack }) {
   const [scoreData, setScoreData] = useState(null);
   const [error, setError] = useState(null);
   const [bookmarkedWords, setBookmarkedWords] = useState(new Set());
+  const isManualStopRef = useRef(false); // ← この行を追加
+
 
   useEffect(() => { loadScenario(); }, [scenarioId]);
 
@@ -96,23 +98,33 @@ export function ShadowingPage({ scenarioId, onBack }) {
   };
 
   const handleStartRecording = async () => {
-    try {
-      setPhase('recording');
-      setRecognizedText('');
-      const transcript = await stt.start();
-      setRecognizedText(transcript);
-      setPhase('evaluating');
-      const result = calculateScore(scenario.sentenceEn, transcript);
-      setScoreData(result);
-      await progressApi.save(scenarioId, result.score);
-      setPhase('result');
-    } catch (err) {
+  isManualStopRef.current = false; // 開始時にリセット
+  try {
+    setPhase('recording');
+    setRecognizedText('');
+    const transcript = await stt.start();
+    setRecognizedText(transcript);
+    setPhase('evaluating');
+    const result = calculateScore(scenario.sentenceEn, transcript);
+    setScoreData(result);
+    await progressApi.save(scenarioId, result.score);
+    setPhase('result');
+  } catch (err) {
+    // 手動停止の場合はエラー処理をスキップ
+    if (!isManualStopRef.current) {
       setError('音声認識エラー: ' + err.message);
       setPhase('waiting');
     }
-  };
+  }
+};
 
-  const handleStopRecording = () => { stt.stop(); };
+  const handleRetryRecording = () => {
+  isManualStopRef.current = true; // refを使う
+  stt.stop();
+  setError(null);
+  setRecognizedText('');
+  setPhase('waiting');
+};
 
   const handleRetry = () => {
     setPhase('initial');
@@ -242,8 +254,8 @@ export function ShadowingPage({ scenarioId, onBack }) {
                   animation: `pulse 1.8s ease-in-out ${i * 0.35}s infinite`,
                 }} />
               ))}
-              <button
-                onClick={handleStopRecording}
+              <button 
+                onClick={handleRetryRecording}
                 style={{
                   position: 'absolute', top: '50%', left: '50%',
                   transform: 'translate(-50%,-50%)',
@@ -258,11 +270,11 @@ export function ShadowingPage({ scenarioId, onBack }) {
                 }}
               >
                 <span style={{ fontSize: '1.8rem' }}>🎤</span>
-                <span style={{ letterSpacing: '0.05em', opacity: 0.8 }}>STOP</span>
+                <span style={{ letterSpacing: '0.05em', opacity: 0.8 }}>やり直す</span>
               </button>
             </div>
             <p style={{ color: 'var(--magenta)', fontFamily: 'var(--mono)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>⬤ REC — SPEAK NOW</p>
-            <p style={{ color: 'var(--t3)', fontFamily: 'var(--mono)', fontSize: '0.68rem', marginTop: '0.5rem' }}>2秒間の無音で自動停止</p>
+            <p style={{ color: 'var(--t3)', fontFamily: 'var(--mono)', fontSize: '0.68rem', marginTop: '0.5rem' }}>ボタンを押すとやり直せます</p>
           </GlassCard>
         )}
 
