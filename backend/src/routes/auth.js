@@ -2,62 +2,82 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 const { generateToken } = require('../utils/jwt');
+const admin = require('../config/firebase');
 
 /**
- * POST /api/auth/register
- * ユーザー登録（簡易版：メールアドレスのみ）
+ * POST /api/auth/google-login
+ * Googleログイン
  */
-router.post('/register', async (req, res) => {
-  const { email } = req.body;
+router.post('/google-login', async (req, res) => {
+  const { idToken } = req.body;
 
   // バリデーション
-  if (!email || !email.includes('@')) {
+  if (!idToken) {
     return res.status(400).json({
       success: false,
       error: {
-        code: 'INVALID_EMAIL',
-        message: 'メールアドレスが不正です'
+        code: 'INVALID_TOKEN',
+        message: 'IDトークンが必要です'
       }
     });
   }
 
   try {
-    // 既存ユーザーチェック
+    // Firebase Admin SDKでIDトークンを検証
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const { uid, email, name, picture } = decodedToken;
+
+    // ユーザーが既に存在するかチェック
     const existingUser = await db.query(
-      'SELECT id FROM users WHERE email = $1',
-      [email]
+      'SELECT id, email, google_id, display_name, photo_url FROM users WHERE google_id = $1',
+      [uid]
     );
+
+    let user;
 
     if (existingUser.rows.length > 0) {
-      return res.status(409).json({
-        success: false,
-        error: {
-          code: 'EMAIL_ALREADY_EXISTS',
-          message: 'このメールアドレスは既に登録されています'
-        }
-      });
+      // 既存ユーザー
+      user = existingUser.rows[0];
+    } else {
+      // 新規ユーザー作成
+      const result = await db.query(
+        `INSERT INTO users (email, google_id, display_name, photo_url) 
+         VALUES ($1, $2, $3, $4) 
+         RETURNING id, email, google_id, display_name, photo_url`,
+        [email, uid, name || email.split('@')[0], picture || null]
+      );
+      user = result.rows[0];
     }
 
-    // ユーザー作成
-    const result = await db.query(
-      'INSERT INTO users (email) VALUES ($1) RETURNING id, email, created_at',
-      [email]
-    );
-
-    const user = result.rows[0];
+    // JWTトークン生成
     const token = generateToken(user.id, user.email);
 
-    res.status(201).json({
+    res.json({
       success: true,
       data: {
-        userId: user.id,
-        email: user.email,
-        token
+        token,
+        user: {
+          id: user.id,
+          email: user.email,
+          displayName: user.display_name,
+          photoUrl: user.photo_url
+        }
       }
     });
 
   } catch (error) {
-    console.error('Register error:', error);
+    console.error('Google login error:', error);
+    
+    if (error.code === 'auth/id-token-expired') {
+      return res.status(401).json({
+        success: false,
+        error: {
+          code: 'TOKEN_EXPIRED',
+          message: 'トークンの有効期限が切れています'
+        }
+      });
+    }
+
     res.status(500).json({
       success: false,
       error: {
@@ -69,61 +89,3 @@ router.post('/register', async (req, res) => {
 });
 
 module.exports = router;
-/**
- * POST /api/auth/login
- * ログイン（簡易版：メールアドレスのみ）
- */
-router.post('/login', async (req, res) => {
-  const { email } = req.body;
-
-  // バリデーション
-  if (!email || !email.includes('@')) {
-    return res.status(400).json({
-      success: false,
-      error: {
-        code: 'INVALID_EMAIL',
-        message: 'メールアドレスが不正です'
-      }
-    });
-  }
-
-  try {
-    // ユーザー存在チェック
-    const result = await db.query(
-      'SELECT id, email, created_at FROM users WHERE email = $1',
-      [email]
-    );
-
-    if (result.rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        error: {
-          code: 'USER_NOT_FOUND',
-          message: 'このメールアドレスは登録されていません'
-        }
-      });
-    }
-
-    const user = result.rows[0];
-    const token = generateToken(user.id, user.email);
-
-    res.json({
-      success: true,
-      data: {
-        userId: user.id,
-        email: user.email,
-        token
-      }
-    });
-
-  } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({
-      success: false,
-      error: {
-        code: 'SERVER_ERROR',
-        message: 'サーバーエラーが発生しました'
-      }
-    });
-  }
-});
