@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { RegisterModal } from './components/RegisterModal';
+import LoginPage from './pages/LoginPage'; 
 import { HomePage } from './pages/HomePage';
 import { ShadowingPage } from './pages/ShadowingPage';
 import { WordListPage } from './pages/WordListPage';
@@ -162,92 +162,17 @@ function LoadingScreen() {
   );
 }
 
-function LoginScreen({ showModal, setShowModal }) {
-  return (
-    <>
-      <div style={{
-        minHeight: '100vh', display: 'flex',
-        alignItems: 'center', justifyContent: 'center', padding: '2rem',
-      }}>
-        <div style={{ textAlign: 'center', maxWidth: 560, animation: 'fadeUp 0.6s ease both' }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-            fontSize: '0.68rem', fontFamily: 'var(--mono)', color: 'var(--cyan)',
-            background: 'rgba(0,240,255,0.07)',
-            border: '1px solid rgba(0,240,255,0.18)',
-            padding: '0.38rem 1rem', borderRadius: 20,
-            marginBottom: '2rem', letterSpacing: '0.1em',
-          }}>
-            <span style={{
-              width: 5, height: 5, borderRadius: '50%',
-              background: 'var(--cyan)', display: 'inline-block',
-              boxShadow: '0 0 6px var(--cyan)',
-            }} />
-            MEDICAL LEARNING PLATFORM
-          </div>
 
-          <h1 style={{
-            fontSize: 'clamp(2.4rem, 7vw, 4.8rem)',
-            fontWeight: 300, letterSpacing: '-0.04em',
-            lineHeight: 1.1, marginBottom: '1.4rem',
-          }}>
-            <span style={{
-              background: 'linear-gradient(135deg, var(--cyan) 0%, #fff 55%, var(--magenta) 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            }}>
-              Medical English
-            </span>
-            <br />
-            <span style={{ color: 'var(--t2)', fontWeight: 200 }}>Shadowing</span>
-          </h1>
-
-          <p style={{
-            color: 'var(--t3)', fontFamily: 'var(--mono)',
-            fontSize: 'clamp(0.72rem, 2vw, 0.88rem)',
-            letterSpacing: '0.06em', marginBottom: '3rem',
-          }}>
-            AI-POWERED PRONUNCIATION TRAINING
-          </p>
-
-          <button
-            onClick={() => setShowModal(true)}
-            style={{
-              width: '100%', maxWidth: 300,
-              padding: '1.1rem 2rem',
-              background: 'linear-gradient(135deg, rgba(0,240,255,0.1), rgba(255,0,128,0.1))',
-              border: '1px solid rgba(0,240,255,0.38)',
-              borderRadius: 14, color: 'var(--t1)',
-              fontSize: '1rem', fontWeight: 600,
-              fontFamily: 'var(--font)', cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              margin: '0 auto', display: 'block',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'var(--cyan)';
-              e.currentTarget.style.boxShadow = '0 0 28px var(--glow-c)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'rgba(0,240,255,0.38)';
-              e.currentTarget.style.boxShadow = 'none';
-              e.currentTarget.style.transform = 'none';
-            }}
-          >
-            ログイン / 新規登録
-          </button>
-        </div>
-      </div>
-      <RegisterModal isOpen={showModal} onClose={() => setShowModal(false)} />
-    </>
-  );
-}
 
 function AppContent() {
-  const { user, loading } = useAuth();
-  const [showModal, setShowModal] = useState(false);
-  useEffect(() => { if (!loading && !user) setShowModal(true); }, [loading, user]);
+  const { user, loading, setUser } = useAuth();
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+  };
+
   if (loading) return <LoadingScreen />;
-  if (!user) return <LoginScreen showModal={showModal} setShowModal={setShowModal} />;
+  if (!user) return <LoginPage onLoginSuccess={handleLoginSuccess} />;
   return <MainApp />;
 }
 

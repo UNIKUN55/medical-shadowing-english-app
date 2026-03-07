@@ -68,7 +68,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-module.exports = router;
 /**
  * POST /api/auth/login
  * ログイン（簡易版：メールアドレスのみ）
@@ -127,3 +126,71 @@ router.post('/login', async (req, res) => {
     });
   }
 });
+
+/**
+ * POST /api/auth/google-login
+ * Google認証ログイン
+ */
+router.post('/google-login', async (req, res) => {
+  const { idToken } = req.body;
+
+  if (!idToken) {
+    return res.status(400).json({
+      success: false,
+      error: {
+        code: 'MISSING_ID_TOKEN',
+        message: 'IDトークンが必要です'
+      }
+    });
+  }
+
+  try {
+    const admin = require('../config/firebase');
+    
+    // Firebase IDトークンを検証
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const { uid, email, name, picture } = decodedToken;
+
+    // google_idまたはemailでユーザーを検索
+    let userResult = await db.query(
+      'SELECT id, email, google_id, display_name, photo_url FROM users WHERE google_id = $1 OR email = $2',
+      [uid, email]
+    );
+
+    let user;
+    if (userResult.rows.length === 0) {
+      // 新規ユーザー作成
+      const insertResult = await db.query(
+        'INSERT INTO users (email, google_id, display_name, photo_url) VALUES ($1, $2, $3, $4) RETURNING id, email, google_id, display_name, photo_url',
+        [email, uid, name || email, picture || null]
+      );
+      user = insertResult.rows[0];
+    } else {
+      user = userResult.rows[0];
+    }
+
+    const token = generateToken(user.id, user.email);
+
+    res.json({
+      success: true,
+      data: {
+        userId: user.id,
+        email: user.email,
+        displayName: user.display_name,
+        photoUrl: user.photo_url,
+        token
+      }
+    });
+  } catch (error) {
+    console.error('Google login error:', error);
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 'SERVER_ERROR',
+        message: 'サーバーエラーが発生しました'
+      }
+    });
+  }
+});
+
+module.exports = router;

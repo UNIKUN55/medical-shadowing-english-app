@@ -150,3 +150,51 @@ export const bookmarksApi = {
    */
   delete: (id) => api.delete(`/api/bookmarks/${id}`)
 };
+
+
+/**
+ * 認証API
+ */
+export const authApi = {
+  /**
+   * メールアドレス登録
+   */
+  register: async (email) => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+    return response.json();
+  },
+
+  /**
+   * メールアドレスログイン
+   */
+  login: async (email) => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+    return response.json();
+  },
+
+  /**
+   * Googleログイン
+   */
+  googleLogin: async (idToken) => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/google-login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ idToken }),
+    });
+    return response.json();
+  },
+};
