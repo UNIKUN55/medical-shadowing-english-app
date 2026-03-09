@@ -10,6 +10,7 @@ const bookmarksRouter = require('./routes/bookmarks');
 const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
+app.set('trust proxy', true);
 
 // レート制限の設定（DoS攻撃対策）
 const limiter = rateLimit({
