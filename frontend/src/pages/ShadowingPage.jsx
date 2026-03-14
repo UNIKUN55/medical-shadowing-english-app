@@ -63,7 +63,7 @@ function SecLabel({ children, color = 'var(--cyan)', style = {} }) {
   );
 }
 
-export function ShadowingPage({ scenarioId, onBack }) {
+function ShadowingPage({ scenarioId, onBack }) {
   const [scenario, setScenario] = useState(null);
   const [loading, setLoading] = useState(true);
   const [phase, setPhase] = useState('initial');
@@ -419,3 +419,5 @@ function WordItem({ word, bookmarked, onBookmark }) {
     </div>
   );
 }
+
+export default ShadowingPage;

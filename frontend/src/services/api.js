@@ -111,6 +111,16 @@ export const scenariosApi = {
   getAll: () => api.get('/api/scenarios'),
 
   /**
+   * カテゴリ一覧取得
+   */
+  getCategories: () => api.get('/api/scenarios/categories'),
+
+  /**
+   * カテゴリでフィルタリング
+   */
+  getByCategory: (categoryId) => api.get(`/api/scenarios?category_id=${categoryId}`),
+
+  /**
    * シナリオ詳細取得
    */
   getById: (id) => api.get(`/api/scenarios/${id}`)

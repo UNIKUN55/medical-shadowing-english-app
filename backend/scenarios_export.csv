@@ -1,0 +1,420 @@
+id,sentence_en,sentence_ja
+6,Patient is intubated and sedated.,患者は挿管され、鎮静されています。
+7,The neurology team recommends initiating dual antiplatelet therapy with aspirin and clopidogrel for 21 days following this minor ischemic stroke event.,脳神経内科チームは、この軽症の脳梗塞イベントの後、アスピリンとクロピドグレルによる抗血小板薬2剤併用療法（DAPT）を21日間開始することを推奨しています。
+8,"The coagulation profile is consistent with DIC, so we should treat the underlying sepsis while supporting with FFP and cryoprecipitate.",凝固プロファイルはDICと一致しているため、FFPとクリオプレシピテートでサポートしながら基礎にある敗血症を治療すべきです。
+9,Post-op wound looks clean today.,今日、術後の傷口は綺麗に見えます。
+10,Have you had a bowel movement?,お通じはありましたか？
+11,Any new symptoms to report?,何か新しい症状はありますか？
+12,Activate the cath lab immediately.,ただちにカテ室（心カテ室）を稼働させてください。
+13,Surgical consultation is needed for this case of acute appendicitis confirmed on CT scan.,CTスキャンで確認されたこの急性虫垂炎の症例には、外科のコンサルトが必要です。
+14,Vasopressin has been added as a second vasopressor given ongoing hemodynamic instability.,血行動態の不安定性が続いているため、第2の昇圧剤としてバソプレシンが追加されました。
+15,"The patient's liver function tests show an obstructive pattern with elevated direct bilirubin and alkaline phosphatase, which warrants urgent MRCP or ERCP evaluation.",患者の肝機能検査は、直接ビリルビンとALPの上昇を伴う閉塞性パターンを示しており、至急のMRCPまたはERCPによる評価が必要です。
+16,Pulse ox is reading ninety-four.,パルスオキシメーターは94を示しています。
+17,A1C is significantly elevated today.,今日、HbA1cが著明に上昇しています。
+18,"The patient has a history of hypothyroidism and is presenting with fatigue, weight gain, constipation, and cold intolerance worsening over three months.",患者には甲状腺機能低下症の既往があり、3ヶ月間で悪化する疲労感、体重増加、便秘、寒冷不耐性を呈しています。
+19,Weight gain is inadequate here.,体重増加が不十分ですね。
+20,Can you rate your pain?,痛みの程度を教えてもらえますか？
+21,"On a scale of one to ten, how bad is the pain?",1から10の段階で、痛みはどれくらいひどいですか？
+22,The patient has a long history of COPD with multiple prior exacerbations and was recently started on a new inhaled corticosteroid regimen.,患者にはCOPDの長い既往歴と複数の増悪歴があり、最近新しい吸入ステロイド薬の治療が開始されました。
+23,Patient had a witnessed seizure.,患者は目撃された痙攣発作を起こしました。
+24,The patient was admitted two days ago with fever and is now showing signs of clinical improvement.,患者は2日前に発熱で入院し、現在は臨床的な改善の兆候を示しています。
+25,"The patient's blood glucose has been persistently elevated despite increasing insulin doses, which may suggest insulin resistance or a concurrent infection.",インスリンの用量を増やしているにもかかわらず血糖値が持続的に上昇しており、インスリン抵抗性または併発感染症を示唆している可能性があります。
+26,Start heparin drip now.,今すぐヘパリンの点滴を開始してください。
+27,Spirometry shows obstructive pattern.,スパイロメトリーで閉塞性障害のパターンを示しています。
+28,Endocrinology should be consulted for management of this new diagnosis of Cushing's syndrome.,クッシング症候群の管理について、内分泌内科にコンサルトすべきです。
+29,We're going to run some blood tests and an EKG right away to make sure nothing serious is going on with your heart.,心臓に深刻な問題が起きていないか確認するため、すぐに血液検査と心電図検査を行います。
+30,"Flow cytometry results are pending, but the picture is concerning for acute leukemia.",フローサイトメトリーの結果はまだ出ていませんが、急性白血病が懸念される病像です。
+31,"ICU liberation bundle components include daily SBT, sedation reduction, mobilization, delirium monitoring, and early sleep hygiene — let's document compliance for all.",ICU離脱バンドルの要素には、毎日のSBT、鎮静の軽減、早期離床、せん妄モニタリング、早期の睡眠衛生が含まれます。すべての実施状況を記録しましょう。
+32,"You mentioned chest pain — does it radiate to your left arm, jaw, or back, and is it associated with shortness of breath?",胸の痛みがあるとおっしゃいましたが、左腕、顎、背中に放散しますか？また、息切れを伴いますか？
+33,EKG shows ST elevation.,心電図でST上昇が見られます。
+34,The aortic valve gradient on echo is significant enough to discuss surgical valve replacement.,エコーでの大動脈弁圧較差は、外科的弁置換術を検討するのに十分有意な値です。
+35,The thyroid ultrasound shows a suspicious 2 cm nodule that warrants fine needle aspiration biopsy.,甲状腺エコーで疑わしい2cmの結節があり、穿刺吸引細胞診（FNA）を行う必要があります。
+36,"If you have a list of your current medications, including over-the-counter drugs and supplements, that would be very helpful.",市販薬やサプリメントを含め、現在服用している薬のリストがあれば、非常に助かります。
+37,"Before we send you home, we'll make sure you understand all of your new medications and have a follow-up appointment scheduled.",お帰りになる前に、新しい薬をすべて理解していただき、フォローアップの予約が取れていることを確認します。
+38,"Given the witnessed fall and loss of consciousness, we need to distinguish between a seizure, a syncopal episode, and a cardiac arrhythmia.",目撃された転倒と意識消失を考慮すると、てんかん発作、失神エピソード、不整脈を鑑別する必要があります。
+39,Compartment syndrome must be ruled out given the tense swelling in the lower leg.,下腿の緊満した腫脹を考慮すると、コンパートメント症候群を除外しなければなりません。
+40,NIH stroke scale score — fourteen.,NIH脳卒中スケールは14点です。
+41,"Calcium is critically elevated at 13.5, and we should check PTH and pursue parathyroid imaging.",カルシウム値が13.5と危機的に上昇しており、PTHを確認して副甲状腺の画像検査を進めるべきです。
+42,"We should send a full nephritis workup including ANA, ANCA, anti-GBM, and complement levels.",ANA、ANCA、抗GBM抗体、補体価を含む腎炎の完全な精密検査を提出すべきです。
+43,Family meeting is scheduled today.,今日、家族会議が予定されています。
+44,Ascites is increasing on exam.,診察上、腹水が増加しています。
+45,Bowel sounds are completely absent.,腸雑音が完全に消失しています。
+46,Hematology has been consulted and recommends initiating hydroxyurea for this patient's first presentation of sickle cell disease with priapism.,血液内科にコンサルトした結果、持続勃起症を伴う鎌状赤血球症の初発症状に対して、ヒドロキシウレアの開始が推奨されています。
+47,An abdominal CT with contrast should be obtained to assess for pancreatic necrosis.,膵壊死を評価するために、造影腹部CTを撮影すべきです。
+48,Serum lipase is greater than three times the upper limit of normal — pancreatitis.,血清リパーゼが正常上限の3倍を超えており、膵炎です。
+49,The physical therapist will come by this afternoon to assess your strength and balance before we finalize any discharge plans.,退院計画を最終決定する前に、今日の午後、理学療法士が筋力とバランスを評価しに伺います。
+50,Fontanelle is full and bulging.,泉門が膨隆して張っています。
+51,"Circulating nurse, please confirm the correct specimen label before it goes to pathology.",外回り看護師、病理に出す前に正しい検体ラベルを確認してください。
+52,"The 3-week-old presents with projectile non-bilious vomiting after every feeding, and an olive-shaped mass is palpable in the right upper quadrant.",生後3週の乳児が毎回の授乳後に胆汁を含まない噴水状嘔吐を呈しており、右上腹部にオリーブ様の腫瘤が触知されます。
+53,The patient is a 78-year-old who fell from standing height and has a displaced femoral neck fracture requiring either hemiarthroplasty or total hip replacement.,患者は立位の高さから転倒した78歳で、人工骨頭置換術または人工股関節全置換術（THA）を要する転位のある大腿骨頸部骨折を負っています。
+54,"Given the renal failure, the intensivist and nephrologist agree that continuous renal replacement therapy should be initiated before the end of this shift.",腎不全を考慮し、集中治療医と腎臓内科医は、このシフトの終了前に持続的腎代替療法（CRRT）を開始すべきであると意見が一致しています。
+55,Enteral nutrition should be started through the NGT at a low rate and advanced slowly.,経鼻胃管（NGT）経由で経腸栄養を低速度から開始し、ゆっくりと進めるべきです。
+56,Have you noticed any swelling in your legs or ankles since admission?,入院してから、脚や足首のむくみに気づきましたか？
+57,When did this start?,これはいつ始まりましたか？
+58,"It's important to identify the precipitating cause of the DKA, which could be infection, missed insulin doses, or a new medical illness.",感染症、インスリンの打ち忘れ、または新たな疾患など、DKAの誘因を特定することが重要です。
+59,Vasopressors are being titrated now.,昇圧剤を現在、調整（漸増・漸減）しています。
+60,BP is dropping — vasopressors?,血圧が低下しています、昇圧剤は？
+61,Physical therapy evaluated the patient and recommends acute rehab placement rather than direct discharge to home.,理学療法士が患者を評価し、自宅への直接退院ではなく回復期リハビリテーションへの転院を推奨しています。
+62,"The patient's MELD score is 22, and liver transplant evaluation should be considered.",患者のMELDスコアは22であり、肝移植の評価を検討すべきです。
+63,Patient has known atrial fibrillation.,患者には既知の心房細動があります。
+64,Family meeting is needed urgently.,至急、家族会議が必要です。
+65,You mentioned feeling short of breath — is it worse lying flat or with activity?,息苦しさを感じるとのことですが、仰向けになった時や動いた時に悪化しますか？
+66,Clamp is in place now.,クランプをかけました。
+67,Is the patient on steroids?,患者はステロイドを服用していますか？
+68,Let's do a lap count before we begin closing — confirm all instruments accounted for.,閉創を始める前にガーゼカウントをしましょう、すべての器具が揃っているか確認してください。
+69,The lymph nodes are enlarged.,リンパ節が腫大しています。
+70,How are you feeling today?,今日の体調はいかがですか？
+71,Neurosurgery has been consulted for urgent evaluation of the large epidural hematoma.,大きな硬膜外血腫の緊急評価のために、脳神経外科にコンサルトされました。
+72,"The repeat chest X-ray this morning shows improvement compared to yesterday, so we can wean oxygen gradually.",今朝の胸部X線再検査では昨日と比べて改善が見られるため、酸素を徐々に減量できます。
+73,Is the dyspnea worsening today?,今日、呼吸困難は悪化していますか？
+74,"Urology has been consulted for the bilateral hydronephrosis, and they are planning urgent ureteral stent placement to relieve the obstruction.",両側水腎症について泌尿器科にコンサルトしており、閉塞を解除するために緊急の尿管ステント留置を計画しています。
+75,Discharge is planned for tomorrow.,退院は明日を予定しています。
+76,Blood pressure is critically high.,血圧が危険なほど高いです。
+77,The patient is stable now.,患者の状態は現在安定しています。
+78,Patient has a smoking history.,患者には喫煙歴があります。
+79,Ready to close the abdomen.,閉腹の準備ができました。
+80,Is the pain radiating anywhere?,痛みはどこかに放散していますか？
+81,"On examination, there is significant use of accessory muscles, and the patient is only able to speak in two-to-three word sentences.",診察上、著明な呼吸補助筋の使用が見られ、患者は2〜3語の文でしか話せません。
+82,Hold all nephrotoxic medications now.,腎毒性のある薬剤をすべて直ちに一時中止してください。
+83,Start IV iron infusion today.,今日から鉄剤の静注を開始してください。
+84,"We need to have a sensitive and private conversation with this teenager about substance use, sexual activity, and mental health before completing the visit.",診察を終える前に、この十代の患者と、物質使用、性活動、メンタルヘルスについて、慎重かつプライベートな会話をする必要があります。
+85,Patient is under general anesthesia.,患者は全身麻酔下にある。
+86,The patient is tolerating oral feeds well and bowel sounds returned.,患者は経口摂取良好であり、腸雑音も回復しました。
+87,The ABG shows a respiratory alkalosis with a mild decrease in oxygen tension.,動脈血ガス分析では、軽度の酸素分圧低下を伴う呼吸性アルカローシスを示しています。
+88,Are you on any medications?,何か薬を飲んでいますか？
+89,Neurovascular exam is currently intact.,現在、神経血管系の所見は正常です。
+90,The patient is a 55-year-old diabetic with CKD stage 3 who presents with a sudden worsening of kidney function over the last three days.,患者はCKDステージ3の55歳糖尿病患者で、過去3日間で腎機能の急激な悪化を呈しています。
+91,Is there anyone with you today who can provide more history?,今日、詳しい病歴を教えてくれる方は一緒にいらっしゃいますか？
+92,Oncology should be involved early given the suspicious lymphadenopathy and constitutional symptoms.,疑わしいリンパ節腫脹と全身症状があるため、腫瘍内科に早期に介入してもらうべきです。
+93,The H. pylori test was positive.,ピロリ菌の検査は陽性でした。
+94,The telemetry strip shows new-onset atrial fibrillation with a rapid ventricular response rate.,テレメーターの波形は、頻脈を伴う新規発症の心房細動を示しています。
+95,We should reverse anticoagulation immediately given the intracranial bleed on CT scan.,CTスキャンでの頭蓋内出血を考慮し、ただちに抗凝固療法を拮抗すべきです。
+96,The patient has a history of sickle cell disease and is presenting with a vaso-occlusive crisis.,患者は鎌状赤血球症の既往があり、血管閉塞クリーゼを呈しています。
+97,"The PSA level is significantly elevated, and the digital rectal exam reveals a hard irregular prostate, raising strong concern for prostate cancer with obstruction.",PSA値が著明に上昇しており、直腸指診で硬く不規則な前立腺が認められるため、閉塞を伴う前立腺がんの懸念が強まっています。
+98,The CT head shows a hyperdense middle cerebral artery sign consistent with proximal MCA occlusion — please activate the stroke thrombectomy protocol.,頭部CTで近位MCA閉塞に一致する高吸収血管サインが見られます。脳卒中の血栓回収プロトコルを稼働させてください。
+99,Weight bearing is still restricted.,荷重は依然として制限されています。
+100,"The FENa is less than 1%, which supports a pre-renal etiology for this AKI.",ナトリウム排泄率（FENa）が1%未満であり、このAKIが腎前性であることを裏付けています。
+101,"The patient is a 22-year-old with type 1 diabetes presenting in DKA with a glucose of 620, pH 7.1, and positive serum ketones.",患者は1型糖尿病の22歳で、血糖値620、pH 7.1、血清ケトン体陽性のDKAで受診しています。
+102,Daily sedation vacation was performed.,毎日の鎮静中断（sedation vacation）が実施されました。
+103,Does the child have any known allergies or history of adverse medication reactions?,お子さんに既知のアレルギーや薬の副作用の既往はありますか？
+104,"Have you had any fever, chills, or night sweats recently?",最近、発熱、悪寒、または寝汗はありましたか？
+105,"The nursing team noted that the patient refused medications twice overnight, which may affect recovery.",夜間に患者が2回服薬を拒否したと看護チームから記録があり、回復に影響する可能性があります。
+106,Dialysis may be needed soon.,まもなく透析が必要になるかもしれません。
+107,I want to check how you've been feeling since we started the antibiotics.,抗菌薬を開始してから、具合がどうか確認したいです。
+108,We need a consult today.,今日、専門科へのコンサルトが必要です。
+109,"It's very important that you let us know right away if you experience any chest pain, sudden weakness, or vision changes.",胸の痛み、突然の脱力感、視力の変化などを感じたら、すぐに知らせていただくことが非常に重要です。
+110,We should obtain a CT chest to evaluate for possible pulmonary embolism.,肺塞栓症の可能性を評価するため、胸部CTを撮影すべきです。
+111,The patient has been in the ICU for 12 days and VAP precautions should be reinforced.,患者はICUに12日間入室しており、人工呼吸器関連肺炎（VAP）予防策を強化すべきです。
+112,We're hoping to have you up and walking today with the help of a nurse.,今日は看護師の介助で起きて歩けるようになると期待しています。
+113,"The blood loss is higher than anticipated, so let's order two more units of packed red blood cells just in case.",出血量が予想よりも多いので、念のため濃厚赤血球をさらに2単位オーダーしましょう。
+114,Last immunization was when?,最後の予防接種はいつですか？
+115,Urine output is critically low.,尿量が危機的に少ないです。
+116,"Anesthesia, the patient moved slightly during the last incision — are you satisfied with the depth of anesthesia right now?",麻酔科、最後の切開の際に患者が少し動きました、現在の麻酔深度は十分ですか？
+117,Pupils are unequal and fixed.,瞳孔は左右不同で対光反射がありません。
+118,Start insulin drip immediately.,インスリンの点滴をただちに開始してください。
+119,Start IV fluids immediately now.,直ちに静脈内輸液を開始してください。
+120,"We need to determine if the AKI is pre-renal, intrinsic renal, or post-renal in origin.",AKIの原因が腎前性、腎性、腎後性のいずれであるかを判断する必要があります。
+121,Prone positioning has been maintained for 16 hours with improvement in oxygenation and we plan to re-evaluate each day based on P/F ratio.,腹臥位療法を16時間維持したところ酸素化の改善が見られ、P/F比に基づいて毎日再評価する予定です。
+122,Social work has been involved to coordinate safe discharge planning.,安全な退院計画を調整するために、ソーシャルワーカーが介入しています。
+123,The patient has left-sided weakness and facial droop — onset approximately two hours ago.,患者には左側の脱力と顔面下垂があり、発症は約2時間前です。
+124,"We should perform a diagnostic paracentesis to check for spontaneous bacterial peritonitis, and if confirmed, start empiric third-generation cephalosporin antibiotics.",自然発症細菌性腹膜炎をチェックするために診断的腹腔穿刺を実施し、確認された場合は経験的な第3世代セファロスポリン系抗菌薬を開始すべきです。
+125,Patient is actively bleeding now.,患者は現在活動性の出血をしています。
+126,We should discuss goals of care with the family before escalating to a more aggressive treatment plan.,より侵襲的な治療計画にステップアップする前に、家族と治療方針（ケアの目標）について話し合うべきです。
+127,Patient has bloody stool today.,患者は今日、血便があります。
+128,TSH level is undetectable now.,TSH値が現在検出感度以下（測定不能）です。
+129,"Before closing, let's do a thorough washout of the peritoneal cavity and confirm there are no additional bleeding sites we've missed.",閉創の前に、腹腔内を徹底的に洗浄し、見逃している出血部位がないか確認しましょう。
+130,"The 24-hour urine cortisol result is three times the upper limit of normal, and we should pursue pituitary MRI to evaluate for Cushing's disease.",24時間尿中コルチゾール値が正常上限の3倍であり、クッシング病の評価のために下垂体MRIを進めるべきです。
+131,The IV line needs replacing.,点滴ラインの交換が必要です。
+132,I'm going to extend the incision slightly to improve exposure of the hepatic hilum — please adjust the light accordingly.,肝門部の視野を良くするために切開を少し延長します、それに合わせてライトを調整してください。
+133,"Because the patient is outside the tPA window, we should discuss endovascular thrombectomy with neurointerventional radiology given the large vessel occlusion.",患者はtPAの適応時間外であるため、大血管閉塞を考慮して血管内血栓回収療法について話し合うべきです。
+134,The bladder scan shows retention.,膀胱スキャンで尿閉が認められます。
+135,"Anesthesia, can you confirm the patient received prophylactic antibiotics already?",麻酔科、患者がすでに予防的抗菌薬を投与されたか確認できますか？
+136,Blood glucose is very high.,血糖値が非常に高いです。
+137,The MRI confirms a full-thickness rotator cuff tear — surgery versus conservative management should be discussed.,MRIで腱板の全層断裂が確認されました。手術か保存的治療かについて話し合う必要があります。
+138,CVP is trending downward today.,今日、CVP（中心静脈圧）は低下傾向です。
+139,Have you noticed any blood in your urine or bowel movements?,尿や便に血が混じっていることに気づきましたか？
+140,Pulse is irregular and rapid.,脈が不規則で速いです。
+141,"Given the history of NSAID use and dehydration from vomiting, pre-renal azotemia is the most likely explanation for this acute kidney injury.",NSAIDsの使用歴と嘔吐による脱水を考慮すると、この急性腎障害の最も可能性の高い原因は腎前性高窒素血症です。
+142,Speech is slurred and slow.,ろれつが回っておらず、話すのが遅いです。
+143,"I need you to describe the pain in detail, including when it started and whether anything makes it better or worse.",いつ始まったか、何をすると良く（悪く）なるかを含め、痛みを詳しく教えてください。
+144,Is the baby breastfeeding well?,赤ちゃんは母乳をよく飲んでいますか？
+145,Swan-Ganz catheter is placed.,スワンガンツカテーテルが留置されています。
+146,"The child was brought in for a limp — given the fever and elevated inflammatory markers, we cannot rule out septic arthritis and should consult orthopedics.",子供は跛行で来院しました。発熱と炎症マーカーの上昇を考慮すると化膿性関節炎を除外できず、整形外科にコンサルトすべきです。
+147,ERCP is being planned tomorrow.,明日、ERCP（内視鏡的逆行性胆管膵管造影）が計画されています。
+148,Did you fall or get hurt?,転んだり、怪我をしたりしましたか？
+149,Let's call a brief pause — I want to ensure the margin is clear before we proceed any further with the resection.,少し止めましょう、これ以上切除を進める前に、切除断端（マージン）がクリアであることを確認したいです。
+150,"The peripheral blood smear shows hypersegmented neutrophils, which in this clinical context is highly suggestive of B12 or folate deficiency.",末梢血塗抹標本で過分葉好中球が見られ、この臨床的背景においてビタミンB12または葉酸の欠乏を強く示唆しています。
+151,Nausea and vomiting persist today.,今日も吐き気と嘔吐が続いています。
+152,"Before proceeding with lumbar puncture, we need to confirm there is no evidence of elevated intracranial pressure on the fundoscopic exam.",腰椎穿刺を進める前に、眼底検査で頭蓋内圧亢進の所見がないことを確認する必要があります。
+153,"The ventilator shows elevated plateau pressure, which may indicate worsening lung compliance.",人工呼吸器でプラトー圧の上昇が見られ、肺コンプライアンスの悪化を示している可能性があります。
+154,Foley catheter output — 10 mL.,尿道カテーテル（フォーリー）の排尿量は10mLです。
+155,Is the pain constant?,痛みは持続的ですか？
+156,Pain is controlled at baseline.,痛みはベースラインでコントロールされています。
+157,"Today's goals include weaning vasopressor support, trialing a lower sedation dose, and checking for signs of end-organ recovery on morning labs.",今日の目標は、昇圧剤サポートの減量、より低用量の鎮静のトライアル、朝の採血での終末臓器機能回復の兆候確認です。
+158,"The patient reports polyuria, polydipsia, and a 15-pound weight loss over two months.",患者は多尿、多飲、および2ヶ月間で15ポンドの体重減少を報告しています。
+159,"The post-operative plan includes early weight-bearing as tolerated, PT and OT evaluation on post-operative day one, and discharge to acute rehab.",術後の計画には、耐えられる範囲での早期荷重、術後1日目の理学療法および作業療法評価、回復期リハビリテーションへの退院が含まれます。
+160,"Let's discuss the patient's goals of care, as the prognosis with relapsed lymphoma is guarded and palliative options should be explored.",再発リンパ腫の予後は不良であり、緩和的な選択肢も模索すべきであるため、患者のケアの目標について話し合いましょう。
+161,"Good morning — I'm one of the doctors on the medicine team, and I'll be checking in with you every morning during your stay.",おはようございます。私は内科チームの医師の一人で、入院中は毎朝様子を伺いに来ます。
+162,Let's check a STAT ABG to assess the patient's ventilation and oxygenation status now.,患者の換気と酸素化の状態を今すぐ評価するために、至急動脈血ガス（ABG）をチェックしましょう。
+163,"The patient's creatinine has doubled in 48 hours, meeting criteria for AKI stage two.",患者のクレアチニン値が48時間で2倍になり、急性腎障害（AKI）ステージ2の基準を満たしています。
+164,We need to avoid all contrast agents and nephrotoxic medications while the creatinine remains elevated and kidney function is compromised.,クレアチニン値が上昇したままで腎機能が低下している間は、すべての造影剤と腎毒性のある薬剤を避ける必要があります。
+165,"Can you tell me if you've had any recent illnesses, travel abroad, or exposure to anyone who has been sick recently?",最近の病気、海外渡航歴、または最近病気になった人との接触があったかどうか教えていただけますか？
+166,Serial ultrasounds show improving cardiac function and we're cautiously weaning vasopressors.,連続したエコー検査で心機能の改善が見られ、昇圧剤を慎重に減量しています。
+167,We should activate the stroke protocol and obtain emergent CT head and CTA.,脳卒中プロトコルを稼働させ、緊急の頭部CTおよびCTAを撮影すべきです。
+168,We should evaluate for sepsis given the fever and irritability in a neonate.,新生児の発熱と不機嫌（易刺激性）を考慮し、敗血症の評価を行うべきです。
+169,Thyroid is visibly enlarged today.,甲状腺が今日、視覚的に腫大しています。
+170,Spine surgery has been consulted for the L4-L5 disc herniation with progressive neurological deficit.,進行性の神経脱落症状を伴うL4-L5椎間板ヘルニアについて、脊椎外科にコンサルトされました。
+171,Respiratory syncytial virus is the most common cause of bronchiolitis in this age group.,RSウイルスは、この年齢層における細気管支炎の最も一般的な原因です。
+172,I need a larger retractor — this exposure isn't giving me enough room.,もっと大きな開創器が必要です、この視野では十分なスペースがありません。
+173,INR is supratherapeutic — hold warfarin.,INRが治療域を超えています、ワルファリンを一時中止してください。
+174,Newborn failed hearing screen today.,新生児が今日、聴覚スクリーニングでリファー（再検査）となりました。
+175,The ARDS net protocol is being followed — we're using low tidal volumes of 6 mL/kg ideal body weight and targeting plateau pressures below 30 cmH2O.,ARDS Netプロトコルに従っています。理想体重あたり6mL/kgの低一回換気量を使用し、プラトー圧を30 cmH2O未満に目標設定しています。
+176,Oxygen saturation is ninety-two percent.,酸素飽和度は92%です。
+177,Let's start a short-acting beta-agonist and reassess the response in thirty minutes.,短時間作用性β作動薬を開始し、30分後に反応を再評価しましょう。
+178,Does the patient have any implanted hardware from prior orthopedic surgeries we should be aware of?,把握しておくべき、過去の整形外科手術によるインプラント（金具）は入っていますか？
+179,"It's important to know if you've had any recent trauma, falls, or accidents before we proceed with the examination.",診察を進める前に、最近の外傷、転倒、事故などがなかったかを知ることが重要です。
+180,GI bleeding is suspected — let's cross-match two units and start a PPI drip.,消化管出血が疑われます。2単位の交差適合試験を行い、PPIの点滴を開始しましょう。
+181,The patient presents within the tPA window for acute ischemic stroke treatment.,患者は、急性期脳梗塞治療のtPA投与可能時間内に受診しています。
+182,"Compartment pressures in the anterior compartment were measured at 45 mmHg, which exceeds the threshold — emergent four-compartment fasciotomy is indicated now.",前方コンパートメントの内圧が45 mmHgと測定され、閾値を超えています。今すぐ緊急の4コンパートメント筋膜切開術の適応です。
+183,We're going to make a small change to your blood pressure medication today because your readings have been on the lower side.,血圧の数値が低めに出ているため、今日は血圧の薬を少し変更します。
+184,Are you still having pain?,まだ痛みはありますか？
+185,The patient's blood pressure dropped overnight and requires closer monitoring.,患者の血圧が夜間に低下したため、より厳密なモニタリングが必要です。
+186,The patient failed the SBT today and will require continued mechanical ventilation support.,患者は今日のSBTに失敗し、引き続き機械換気サポートを必要とします。
+187,"Developmental surveillance at this visit shows the 18-month-old has no words yet, which warrants referral to early intervention services immediately.",今回の受診での発達評価によると、18ヶ月児がまだ単語を発しておらず、直ちに早期介入サービスに紹介する必要があります。
+188,The elevated LDH and indirect bilirubin suggest a hemolytic process is likely occurring.,LDHと間接ビリルビンの上昇は、溶血過程が起こっている可能性が高いことを示唆しています。
+189,Bilateral leg edema is present.,両下肢の浮腫が認められます。
+190,We should titrate the nitroglycerin drip to keep the systolic blood pressure above 90.,収縮期血圧を90以上に保つよう、ニトログリセリンの点滴を調節すべきです。
+191,We should start IV fluids and an insulin drip and monitor every hour.,輸液とインスリン点滴を開始し、1時間ごとにモニタリングすべきです。
+192,The 12-lead EKG shows diffuse ST elevations consistent with an anterior STEMI.,12誘導心電図は、前壁STEMIに一致する広範なST上昇を示しています。
+193,Bone density scan was ordered.,骨密度検査がオーダーされました。
+194,"UA shows 3+ protein and dysmorphic RBCs, suggesting a glomerulonephritis syndrome.",尿検査で蛋白3+と変形赤血球が認められ、糸球体腎炎が示唆されます。
+195,"I want to review your symptoms from last night, because the nursing staff noted you had some difficulty breathing around 3 AM.",午前3時頃に呼吸が苦しそうだったと看護スタッフから記録があったので、昨夜からの症状を確認させてください。
+196,Let's do the time-out before we make the first incision.,最初の切開の前にタイムアウトを行いましょう。
+197,"Before we begin, let's confirm the patient's name, procedure, operative site, and any known allergies — everyone please verify.",始める前に、患者名、術式、手術部位、既知のアレルギーを確認しましょう、全員確認をお願いします。
+198,Troponin is significantly elevated now.,トロポニンが現在著明に上昇しています。
+199,The patient has a history of Crohn's disease presenting with a disease flare today.,患者はクローン病の既往があり、今日、疾患の再燃を呈しています。
+200,The repeat chest X-ray shows new bilateral infiltrates concerning for pneumonia.,胸部X線の再検査で、肺炎が疑われる新たな両側浸潤影が見られます。
+201,"The LP results show xanthochromia, which is consistent with subarachnoid hemorrhage.",腰椎穿刺の結果はキサントクロミーを示しており、くも膜下出血と一致します。
+202,Parent education about fever management and return precautions is essential before discharge.,退院前に、発熱時の管理と再受診の目安に関する保護者への教育が不可欠です。
+203,The bleeding is coming from a small vessel — please pass the cautery.,小さな血管から出血しています、電気メスを渡してください。
+204,"A low-residue diet and bowel rest are recommended initially, but if the patient does not improve, we will need to escalate to surgical management for this obstruction.",最初は低残渣食と腸管安静が推奨されますが、患者が改善しない場合、この腸閉塞に対して外科的管理へのステップアップが必要になります。
+205,"The patient has severe osteoporosis, which complicates fixation and increases the risk of re-fracture.",患者には重度の骨粗鬆症があり、これが固定を困難にし、再骨折のリスクを高めています。
+206,"Since you have a history of blood clots, we're going to keep you on blood thinners throughout your stay as a precaution.",血栓の既往があるため、予防措置として入院中は抗凝固薬の投与を続けます。
+207,The patient remains on norepinephrine at 0.15 mcg/kg/min for septic shock.,敗血症性ショックのため、患者には引き続きノルエピネフリンが0.15 mcg/kg/minで投与されています。
+208,Nephrology has been consulted and agrees that dialysis may be necessary if no improvement occurs.,腎臓内科にコンサルト済みで、改善が見られない場合は透析が必要になるかもしれないと同意しています。
+209,Estimated blood loss — 200 mL.,推定出血量は200mLです。
+210,The patient's glucose is 480 mg/dL with positive ketones — concerning for DKA.,患者の血糖値は480 mg/dLでケトン体陽性であり、DKAが懸念されます。
+211,Do you feel dizzy standing up?,立ち上がるとめまいがしますか？
+212,The patient presents with progressive dyspnea on exertion over the past month.,患者は過去1ヶ月間、進行性の労作時呼吸困難を呈しています。
+213,Schedule urgent colonoscopy today please.,今日、至急の大腸内視鏡検査を予定してください。
+214,Can we get more retraction?,もう少し牽引してもらえますか？
+215,Peripheral smear shows schistocytes present.,末梢血塗抹標本で破砕赤血球が見られます。
+216,Has the pain changed in character since it first started today?,今日痛みが始まってから、痛みの性質は変化しましたか？
+217,"This patient with MEN1 syndrome requires coordinated management involving endocrinology, gastroenterology, and surgery for the multiple tumors identified.",このMEN1症候群の患者は、内分泌内科、消化器内科、外科が連携した管理を必要とします。
+218,"Post-operative wound care, antibiotic prophylaxis duration, and the plan for implant removal in 12 months were all reviewed with the patient before discharge.",術後の創傷ケア、予防的抗菌薬の投与期間、12ヶ月後のインプラント抜去の計画がすべて、退院前に患者と確認されました。
+219,"We should reassess the patient's volume status carefully, because both over-resuscitation and under-resuscitation can worsen the outcome in acute kidney injury.",急性腎障害では輸液過剰も輸液不足も転帰を悪化させる可能性があるため、患者の体液量状態を慎重に再評価すべきです。
+220,The patient requires a cervical spine MRI urgently given the new-onset upper extremity weakness and hyperreflexia following this neck injury.,この頸部損傷に続いて新規に発症した上肢の脱力と反射亢進を考慮し、患者には至急の頸椎MRIが必要です。
+221,We need to monitor your vital signs closely while we figure out what's causing your symptoms and determine the best treatment.,症状の原因を特定し、最適な治療法を決定する間、バイタルサインを注意深くモニターする必要があります。
+222,Keep the suction nearby because we may encounter more bleeding here.,ここでさらなる出血に遭遇するかもしれないので、吸引を近くに置いておいてください。
+223,Patient needs urgent ORIF surgery.,患者には緊急の観血的整復固定術（ORIF）が必要です。
+224,We need to reassess pain control before considering early discharge.,早期退院を検討する前に、疼痛コントロールを再評価する必要があります。
+225,"The child with known asthma is presenting with status asthmaticus — start continuous albuterol, give IV magnesium sulfate, and alert the PICU for possible transfer.",既知の喘息を持つ小児が喘息重積状態を呈しています。アルブテロールの持続吸入を開始し、硫酸マグネシウムを静注し、転棟の可能性についてPICUに連絡してください。
+226,Physical therapy has been consulted and will start ambulation today.,理学療法士にコンサルト済みで、今日から歩行訓練を開始します。
+227,The attending wants to discuss the case at noon conference given the unusual presentation and diagnostic uncertainty.,非典型的な症状と診断の不確実性があるため、指導医は昼のカンファレンスでこの症例について議論したいと考えています。
+228,The patient had a generalized tonic-clonic seizure lasting three minutes — administer IV lorazepam now and load with fosphenytoin.,患者は3分間続く全般性強直間代発作を起こしました。今すぐロラゼパムを静注し、ホスフェニトインを負荷投与してください。
+229,Let's make sure the night team is aware of the pending cultures before they sign off this evening.,今夕の申し送り前に、夜勤チームが培養検査の結果待ちであることを確実に把握できるようにしましょう。
+230,Focal neurological deficits are present.,局所神経症状（巣症状）が認められます。
+231,"The adolescent presents with severe epigastric pain, and given the history of NSAID use and family history of PUD, we should test for H. pylori.",思春期の患者が重度の心窩部痛で受診しており、NSAIDsの使用歴と消化性潰瘍（PUD）の家族歴を考慮すると、ピロリ菌の検査をすべきです。
+232,"Given the bleeding history and low platelet count of 8,000, we should transfuse platelets and monitor for any signs of intracranial bleeding.","出血歴と8,000という低血小板数を考慮し、血小板を輸血し、頭蓋内出血の兆候がないかモニタリングすべきです。"
+233,Urinalysis shows RBC casts present.,尿検査で赤血球円柱が認められます。
+234,Time out — everyone confirm ready.,タイムアウト、全員準備の確認を。
+235,Do you use an inhaler?,吸入器を使っていますか？
+236,Patient reports excessive thirst lately.,患者は最近、異常な口渇を訴えています。
+237,Patient has chest pain radiation.,患者には胸痛の放散があります。
+238,"Anesthesia, the patient's pressure is trending down — what's the MAP now?",麻酔科、患者の血圧が低下傾向です、現在の平均動脈圧（MAP）は？
+239,"Given your history of hypertension, I want to make sure we check your blood pressure in both arms right away.",高血圧の既往があるため、すぐに両腕で血圧を測定して確認したいと思います。
+240,"I understand you're in a lot of pain right now, and we're going to do everything we can to help you feel better.",今とても痛いのはわかっています。少しでも楽になるよう、私たちはできる限りのことをします。
+241,Sputum is yellow and thick.,痰は黄色くて粘り気があります。
+242,Creatinine has been trending upward.,クレアチニン値が上昇傾向にあります。
+243,Patient is anuric since morning.,患者は朝から無尿です。
+244,"Your blood sugar has been running a bit high, so we'll adjust insulin.",血糖値が少し高めに推移しているので、インスリンを調整します。
+245,"The patient's CBC shows pancytopenia, which raises concern for bone marrow suppression.",患者のCBCは汎血球減少を示しており、骨髄抑制の懸念が高まります。
+246,The patient's hip X-ray confirms an intertrochanteric femur fracture requiring surgical repair today.,患者の股関節X線検査で、今日中の外科的修復を要する大腿骨転子間骨折が確認されました。
+247,"The patient is on hemodialysis three times a week and missed the last two sessions, which explains the current volume overload and hyperkalemia.",患者は週3回の血液透析を受けていますが、直近の2回を欠席しており、現在の体液量過剰と高カリウム血症を説明しています。
+248,"Given the patient's travel history to Southeast Asia, we should consider tuberculosis in the differential for this chronic productive cough.",患者の東南アジアへの渡航歴を考慮すると、この慢性の湿性咳嗽の鑑別に結核を考慮すべきです。
+249,The patient's spine X-rays show significant spondylolisthesis at L5-S1 with bilateral lower extremity radiculopathy that has not responded to conservative management.,患者の脊椎X線検査で、保存的治療に反応しない両下肢の神経根症を伴うL5-S1の脊椎すべり症が認められます。
+250,"Given the significantly elevated TSH and low free T4, we should increase the levothyroxine dose and recheck thyroid function in six weeks.",TSHの著明な上昇と遊離T4の低下を考慮し、レボチロキシンの用量を増やし、6週間後に甲状腺機能を再評価すべきです。
+251,His vitals are looking good.,彼のバイタルサインは良好です。
+252,We'll be monitoring your kidney function closely over the next few days.,今後数日間、腎機能を注意深くモニタリングしていきます。
+253,"The patient presents with a two-day history of severe right lower quadrant pain, fever, and leukocytosis — appendicitis is confirmed on CT and surgery has been notified.",患者は2日前からの重度な右下腹部痛、発熱、白血球増多を呈しています。CTで虫垂炎が確認され、外科に連絡済みです。
+254,The patient fell from a height and has an open tibial fracture requiring urgent operative management.,患者は高所から転落し、緊急の手術的管理を要する脛骨の開放骨折を負っています。
+255,TSH is suppressed with a free T4 that is markedly elevated — consistent with hyperthyroidism.,TSHは抑制され、遊離T4が著明に上昇しており、甲状腺機能亢進症に一致しています。
+256,"The patient is a 67-year-old with hypertension who woke up with right-sided weakness and aphasia, and the last known normal was eight hours ago.",患者は高血圧を持つ67歳で、右側の脱力と失語で目覚めました。最終健常確認時刻は8時間前です。
+257,Last known normal was midnight.,最終健常確認時刻は深夜0時でした。
+258,Bone marrow biopsy is scheduled.,骨髄生検が予定されています。
+259,We need to activate the cardiac catheterization laboratory within the next ten minutes.,今後10分以内に心カテ室を稼働させる必要があります。
+260,Cast was placed for immobilization.,固定のためにギプスが巻かれました。
+261,"The patient's urine output has been adequate, but we should monitor fluid balance carefully throughout the day.",患者の尿量は十分ですが、1日を通して水分出納を慎重にモニタリングすべきです。
+262,The patient's HbA1C of 11.5% suggests prolonged poor glycemic control prior to admission.,患者のHbA1c 11.5%は、入院前の長期にわたる血糖コントロール不良を示唆しています。
+263,Can you describe the pain and tell me where it is?,痛みの特徴と、どこが痛むのかを教えていただけますか？
+264,The pleural effusion seen on imaging is significant enough to warrant a diagnostic and possibly therapeutic thoracentesis today.,画像で見られる胸水は、今日診断的および治療的胸腔穿刺を行うのに十分な量です。
+265,ANC is dangerously low now.,絶対好中球数（ANC）が危険なほど低いです。
+266,The fever has come down.,熱は下がりました。
+267,"Your latest blood work shows your kidney function has improved slightly, which is encouraging, but we still need to be cautious.",最新の血液検査では腎機能がわずかに改善しており、これは心強いですが、まだ慎重になる必要があります。
+268,"Given the clinical picture, hypertrophic pyloric stenosis is at the top of the differential and we should obtain an abdominal ultrasound immediately.",臨床像を考慮すると肥厚性幽門狭窄症が鑑別の筆頭であり、直ちに腹部エコーを実施すべきです。
+269,Range of motion is limited.,関節可動域（ROM）が制限されています。
+270,The newborn has a total bilirubin of 22 mg/dL at 48 hours of life and needs to be started on phototherapy without delay.,新生児は生後48時間で総ビリルビン値が22 mg/dLであり、遅滞なく光線療法を開始する必要があります。
+271,"The surgical team plans to take the patient back to the OR tomorrow morning for a washout, so anesthesia should be notified and consent obtained tonight.",外科チームは明朝、洗浄のために患者を手術室（OR）に戻す予定であるため、今夜中に麻酔科に連絡し同意を得る必要があります。
+272,Are you currently pregnant or is there any chance you could be?,現在妊娠していますか、またはその可能性はありますか？
+273,Auscultation reveals bilateral expiratory wheezes consistent with an acute asthma exacerbation.,聴診では、急性喘息発作に矛盾しない両側性の呼気性喘鳴が認められます。
+274,I'd like the respiratory therapist to be involved in optimizing the ventilator settings for this intubated ARDS patient in the ICU.,ICUで挿管されているこのARDS患者の人工呼吸器設定を最適化するために、呼吸療法士に関与してもらいたいです。
+275,The patient is a 35-year-old with known AML who is presenting with febrile neutropenia and requires broad-spectrum antibiotic coverage immediately.,患者は既知のAMLを持つ35歳で、発熱性好中球減少症を呈しており、直ちに広域抗菌薬によるカバーが必要です。
+276,The patient's potassium is 6.2 — let's give calcium gluconate and kayexalate urgently.,患者のカリウム値は6.2です。至急、グルコン酸カルシウムとケイキサレートを投与しましょう。
+277,Liver enzymes are markedly elevated.,肝酵素が著明に上昇しています。
+278,"Given the elevated white count and bandemia, we should broaden antibiotic coverage pending culture results.",白血球数の上昇と桿状核球増加を考慮し、培養結果が出るまで抗菌薬のカバー範囲を広げるべきです。
+279,"The CT scan of the abdomen shows free air under the diaphragm, which indicates a bowel perforation and requires immediate surgical intervention.",腹部CTスキャンで横隔膜下にフリーエアー（遊離ガス）が認められ、腸管穿孔を示唆しており、直ちに外科的介入が必要です。
+280,MAP is below sixty — concerning.,平均動脈圧（MAP）が60未満であり、懸念されます。
+281,"Morning rounds identified a new fever spike — blood cultures, urine cultures, and a chest X-ray were sent to evaluate for a new infectious source.",朝の回診で新たな発熱スパイクが確認されました。新たな感染源を評価するため、血液培養、尿培養、胸部X線検査が提出されました。
+282,The hepatitis panel and autoimmune markers should be sent to evaluate for acute hepatitis.,急性肝炎を評価するために、肝炎パネルと自己免疫マーカーを提出すべきです。
+283,Did you sleep well last night?,昨夜はよく眠れましたか？
+284,We should initiate non-invasive positive pressure ventilation immediately if the patient fails to improve with initial bronchodilator therapy.,初期の気管支拡張薬治療で患者が改善しない場合、直ちに非侵襲的陽圧換気を開始すべきです。
+285,MRI brain is being ordered.,頭部MRIがオーダーされています。
+286,I want to make sure we're following the hyperbilirubinemia guidelines and that the family understands the importance of adequate feeding and follow-up.,高ビリルビン血症のガイドラインに従っていること、十分な授乳とフォローアップの重要性を家族が理解していることを確認したいです。
+287,Transfuse two units packed red cells.,濃厚赤血球を2単位輸血してください。
+288,A low morning cortisol and failed cosyntropin stimulation test confirm primary adrenal insufficiency.,早朝コルチゾール低値とACTH刺激試験への無反応により、原発性副腎皮質機能低下症が確定しました。
+289,"The patient has significant malnutrition related to Crohn's disease and should receive nutritional support, possibly via enteral tube feeding, to promote healing.",患者にはクローン病に関連する著しい栄養不良があり、治癒を促進するために、おそらく経腸チューブによる栄養サポートを受けるべきです。
+290,CT head shows hemorrhage.,頭部CTで出血が見られます。
+291,We should check a reticulocyte count to assess the bone marrow's response to anemia.,貧血に対する骨髄の反応を評価するために、網赤血球数をチェックすべきです。
+292,Abdominal tenderness is diffuse now.,腹部の圧痛が現在、広範囲に及びます。
+293,Neurovascular status of the distal extremity should be assessed and documented immediately.,遠位四肢の神経血管状態を直ちに評価し、記録すべきです。
+294,Prone positioning started this morning.,今朝から腹臥位療法が開始されました。
+295,I'm going to place two drains here before we close the fascial layer.,筋膜を閉じる前に、ここにドレーンを2本留置します。
+296,"We need to carefully balance diuresis with maintaining adequate blood pressure, given the known reduced ejection fraction of 25%.",既知の25%という低下した駆出率を考慮すると、利尿と適切な血圧の維持のバランスを慎重に取る必要があります。
+297,The nurse will start an IV and give you something for the pain while we wait for the test results to come back.,検査結果が出るのを待つ間、看護師が点滴を開始し、痛み止めを投与します。
+298,She responded well overnight.,彼女は夜間に良好な反応を示しました。
+299,Did you lose consciousness?,意識を失いましたか？
+300,The chest X-ray looks clear.,胸部X線は異常なしのようです。
+301,The patient is in cardiogenic shock — start dopamine and call cardiology immediately.,患者は心原性ショック状態です。ドパミンを開始し、ただちに循環器内科を呼んでください。
+302,We should obtain serial troponins every three hours to trend the myocardial injury pattern and guide further management decisions.,心筋障害のパターンを追跡し今後の管理方針を決定するために、3時間ごとにトロポニンを連続測定すべきです。
+303,Is the patient on any antiplatelet therapy at home — aspirin or clopidogrel specifically?,患者は自宅で抗血小板療法（アスピリンやクロピドグレル）を受けていますか？
+304,"The patient is in acute decompensated heart failure with bilateral rales, elevated JVP, and pitting edema to the knees bilaterally.",患者は急性非代償性心不全の状態であり、両側性のラ音、頸静脈圧の上昇、および両膝に至る圧痕浮腫を伴っています。
+305,"Renal function is unlikely to recover to baseline given the degree of fibrosis on biopsy, so we should begin discussing chronic kidney disease management and dialysis planning.",生検での線維化の程度を考慮すると、腎機能がベースラインまで回復する可能性は低いため、慢性腎臓病の管理と透析計画について話し合い始めるべきです。
+306,Echo shows reduced ejection fraction.,心エコーで駆出率の低下が見られます。
+307,"Is the patient passing urine on their own, or do they feel incomplete bladder emptying?",患者は自力で排尿していますか、それとも残尿感を感じていますか？
+308,The patient should be fluid restricted to one liter daily given the oliguric renal failure.,乏尿性腎不全を考慮し、患者の水分摂取を1日1リットルに制限すべきです。
+309,Labs came back this morning.,今朝、検査結果が出ました。
+310,Neurosurgery is recommending urgent external ventricular drain placement given the obstructive hydrocephalus seen on the CT scan.,閉塞性水頭症を考慮し、脳神経外科は緊急の脳室ドレナージ留置を推奨しています。
+311,"On exam, the toddler has a barking cough consistent with croup presentation today.",診察上、幼児にはクループの症状に一致する犬吠様咳嗽が認められます。
+312,Joint aspiration is being performed.,関節穿刺が行われています。
+313,The rash you developed may be related to one of your new medications.,発症した発疹は、新しい薬のどれかに関連している可能性があります。
+314,We should hold all oral intake and start aggressive IV hydration with lactated Ringer's.,すべての経口摂取を中止し、乳酸リンゲル液による積極的な静脈内輸液を開始すべきです。
+315,Let's adjust the medication dose.,薬の用量を調整しましょう。
+316,"Suction the field, please.",術野を吸引してください。
+317,Your breathing seems much better.,呼吸はずいぶん楽になったようですね。
+318,Cardiology is recommending starting an ACE inhibitor and a beta-blocker once the patient is hemodynamically stable after this acute event.,循環器内科は、急性イベント後に患者の血行動態が安定したら、ACE阻害薬とβ遮断薬を開始することを推奨しています。
+319,Let's hold the diuretics until we recheck the creatinine level.,クレアチニン値を再確認するまで、利尿薬を一時中止しましょう。
+320,"The patient's INR is 6.5, and given the lack of active bleeding, I recommend holding warfarin and giving oral vitamin K.",患者のINRは6.5であり、活動性出血がないことを考慮すると、ワルファリンを一時中止しビタミンKを経口投与することをお勧めします。
+321,Check urine ketones urgently.,尿中ケトン体を至急確認してください。
+322,Stridor is audible at rest.,安静時に吸気性喘鳴（ストライダー）が聴取されます。
+323,The patient's peak flow is significantly below their personal best value today.,患者の今日のピークフローは、自己ベスト値を大幅に下回っています。
+324,"The dissection here is getting close to the common bile duct, so I need everyone to stay focused and keep the field clear.",ここの剥離は総胆管に近づいているので、全員集中して術野をクリアに保ってください。
+325,"The patient had a vasovagal event during repositioning and the MAP dropped to 45, requiring a bolus of IV fluids and temporary vasopressor uptitraton.",体位変換中に血管迷走神経反射が起こり、MAPが45まで低下したため、輸液の急速投与と昇圧剤の一時的な増量が必要となりました。
+326,Has this happened before?,以前にもこのようなことがありましたか？
+327,"Your heart rate has been elevated, so I'd like to discuss possible causes.",心拍数が上がっているので、考えられる原因について話し合いたいと思います。
+328,How's the airway looking from your end — any issues with ventilation during positioning?,そちらから見て気道はどうですか、体位変換中に換気の問題はありましたか？
+329,The family meeting confirmed the patient's wish for full resuscitative measures to continue.,家族会議により、フル・コード（すべての蘇生措置）を継続するという患者の希望が確認されました。
+330,"The patient's family expressed distress about the prognosis, so a palliative care consultation has been requested to help guide goals-of-care discussions.",患者の家族が予後について苦悩を表明しているため、ケアの目標についての話し合いを支援するために緩和ケアのコンサルトが依頼されました。
+331,Has the patient been compliant with their controller inhaler regimen at home?,患者は自宅でコントローラー（長期管理薬）吸入器のレジメンを遵守していましたか？
+332,Vent settings need immediate adjustment.,人工呼吸器の設定を至急調整する必要があります。
+333,Child is not yet walking.,子供はまだ歩いていません。
+334,The child has a fever.,子供が発熱しています。
+335,"I understand you're feeling frustrated about the length of your hospital stay, but we want to make sure you're safe before discharge.",入院期間が長引いてイライラされるお気持ちはわかりますが、退院前に安全であることをしっかり確認したいのです。
+336,We should perform a daily spontaneous awakening trial and spontaneous breathing trial today.,今日、毎日の自発覚醒トライアル（SAT）と自発呼吸トライアル（SBT）を実施すべきです。
+337,The parent reports the child has not had a wet diaper in the last twelve hours.,保護者は、過去12時間おむつが濡れていないと報告しています。
+338,"We discussed risks and benefits of surgery including infection, blood loss, and DVT, and the patient has signed informed consent for lumbar spinal fusion.",感染、出血、DVTなどの手術のリスクと利益について話し合い、患者は腰椎固定術のインフォームドコンセントにサインしました。
+339,"We need to initiate the DKA protocol with aggressive fluid resuscitation, an insulin drip, and close electrolyte monitoring every two hours.",積極的な輸液蘇生、インスリン点滴、2時間ごとの電解質モニタリングを伴うDKAプロトコルを開始する必要があります。
+340,"The patient has a known history of cirrhosis from hepatitis C and is now presenting with large volume ascites, jaundice, and signs of hepatic encephalopathy.",患者はC型肝炎による肝硬変の既往があり、現在、大量の腹水、黄疸、肝性脳症の兆候を呈しています。
+341,PEEP is set at eight.,PEEP（呼気終末陽圧）は8に設定されています。
+342,The nursing staff reported increased confusion starting around midnight.,看護スタッフから、深夜頃から錯乱状態が悪化していると報告がありました。
+343,Patient has type two diabetes.,患者は2型糖尿病です。
+344,DVT prophylaxis with low-molecular-weight heparin should be started in this post-operative orthopedic patient.,この術後の整形外科患者において、低分子量ヘパリンによる深部静脈血栓症（DVT）予防を開始すべきです。
+345,"We should check iron studies, B12, and folate to work up this macrocytic anemia.",この大球性貧血を精査するため、鉄動態、ビタミンB12、および葉酸をチェックすべきです。
+346,"Scalpel, please — making incision.",メスをお願いします、切開します。
+347,Pulmonology should be consulted for further bronchoscopy evaluation if no improvement.,改善がなければ、気管支鏡によるさらなる評価のため呼吸器内科にコンサルトすべきです。
+348,The hemoglobin is critically low.,ヘモグロビンが危機的に低いです。
+349,It's important to keep track of how much fluid you're drinking each day.,毎日どれくらいの水分を摂っているか記録することが重要です。
+350,An echocardiogram should be obtained to assess wall motion abnormalities and ejection fraction.,壁運動異常と駆出率を評価するために、心エコー検査を行うべきです。
+351,Cardiology is recommending rate control with IV metoprolol before considering cardioversion today.,循環器内科は、今日カルディオバージョンを検討する前に、メトプロロール静注によるレートコントロールを推奨しています。
+352,Renal ultrasound shows hydronephrosis.,腎エコーで水腎症が認められます。
+353,This patient with ulcerative colitis has failed mesalamine and is being considered for biologic therapy — please obtain GI specialist guidance on which agent to start.,この潰瘍性大腸炎の患者はメサラジンが無効であり、生物学的製剤による治療が検討されています。どの薬剤を開始すべきか、消化器内科専門医の指導を仰いでください。
+354,Physical therapy should be involved early to begin range-of-motion exercises after the procedure.,手術後に関節可動域訓練を開始するため、理学療法を早期に介入させるべきです。
+355,Did you take anything for the pain before coming in?,来院する前に何か痛み止めを飲みましたか？
+356,Rash appeared two days ago.,2日前に発疹が出現しました。
+357,"The patient should be educated on proper inhaler technique before discharge, as incorrect use significantly reduces medication effectiveness.",不適切な使用は薬の効果を著しく低下させるため、患者は退院前に適切な吸入技術の教育を受けるべきです。
+358,"The patient's urine culture grew E. coli greater than 100,000 CFUs with sensitivities pending, consistent with a urinary tract infection or pyelonephritis.",患者の尿培養で10万CFU以上の大腸菌が検出され（感受性結果待ち）、尿路感染症または腎盂腎炎に一致します。
+359,Let me know if you have any chest pain or difficulty breathing at any point.,胸の痛みや呼吸困難があれば、いつでも知らせてください。
+360,Patient is NPO for surgery.,患者は手術のため絶飲食（NPO）です。
+361,"Given the severity of symptoms, I'd recommend admitting for observation and monitoring.",症状の重症度を考慮し、観察とモニタリングのための入院を勧めます。
+362,Endoscopy is planned for this morning to identify and treat the source of GI bleeding.,消化管出血の源を特定し治療するために、今朝、内視鏡検査が予定されています。
+363,The child's developmental milestones appear to be delayed — we should refer to neurology.,子供の発達マイルストーンが遅れているようです。小児神経科に紹介すべきです。
+364,I recommend continuing current management and reassessing in 24 hours if there is no further clinical deterioration.,現在の管理を継続し、これ以上の臨床的悪化がなければ24時間後に再評価することをお勧めします。
+365,We need to hold all anticoagulation immediately given the active GI bleed presentation.,活動性の消化管出血があるため、すべての抗凝固療法を直ちに一時中止する必要があります。
+366,A renal ultrasound should be obtained to rule out obstructive uropathy as a cause.,原因としての閉塞性尿路疾患を除外するために、腎エコーを実施すべきです。
+367,The child's weight is below the third percentile on the growth chart for age.,子供の体重は、年齢別の成長曲線の3パーセンタイルを下回っています。
+368,Do you have any allergies?,アレルギーはありますか？
+369,Start bronchodilator therapy now.,すぐに気管支拡張薬の治療を開始してください。
+370,"The patient is a 68-year-old with septic shock from a ruptured diverticular abscess, now post-operative day two on three vasopressors with multiorgan dysfunction.",患者は破裂した憩室膿瘍による敗血症性ショックの68歳で、現在術後2日目であり、3剤の昇圧剤を使用中で多臓器不全を伴っています。
+371,Neurology is at bedside and recommends IV alteplase after ruling out contraindications.,脳神経内科医がベッドサイドにおり、禁忌を除外した上でアルテプラーゼの静注を推奨しています。
+372,MRI shows ACL tear confirmed.,MRIで前十字靭帯（ACL）断裂が確認されました。
+373,Let's transfuse to a hemoglobin target of at least eight grams per deciliter.,ヘモグロビン目標値を少なくとも8g/dLとして輸血しましょう。
+374,The fracture is displaced now.,現在、骨折は転位しています。
+375,Bilirubin is critically elevated today.,今日、ビリルビン値が危機的に上昇しています。
+376,I'd like to add a repeat CBC to this morning's labs.,今朝の採血に、血算（CBC）の再検査を追加したいです。
+377,Is the patient's blood pressure being tightly controlled to target less than 140 systolic?,患者の血圧は、収縮期140未満を目標に厳密にコントロールされていますか？
+378,Start levetiracetam loading dose now.,今すぐレベチラセタムの負荷投与を開始してください。
+379,I'd like to discuss the risks of anticoagulation for this patient's newly diagnosed atrial fibrillation given the recent GI bleed history.,最近の消化管出血の既往を考慮し、新規診断された心房細動に対する抗凝固療法のリスクについて話し合いたいです。
+380,We should adjust the insulin-to-carb ratio given the persistent hyperglycemia during this hospitalization.,今回の入院中の持続的な高血糖を考慮し、糖質インスリン比を調整すべきです。
+381,"Scrub tech, I'll need a 3-0 Vicryl suture for the deep layer and a 4-0 Monocryl for the skin closure at the end.",器械出し看護師、深層用に3-0のバイクリル、最後に皮膚縫合用に4-0のモノクリルが必要です。
+382,The wheeze is audible now.,喘鳴が現在聴取されます。
+383,We are adjusting your medications.,薬の調整を行っています。
+384,The GCS has dropped from 14 to 10 over the last thirty minutes — concerning sign.,過去30分間でGCSが14から10に低下しており、懸念されるサインです。
+385,"Before discharge, the patient should be educated about dietary modifications, alarm symptoms that warrant return to the ER, and the importance of follow-up colonoscopy.",退院前に、食事の変更、ERに戻るべき警告症状、フォローアップの大腸内視鏡検査の重要性について、患者を教育すべきです。
+386,"The patient declined coronary angiography, so we'll manage medically with aspirin, statin, beta-blocker, and close outpatient cardiology follow-up.",患者が冠動脈造影を拒否したため、アスピリン、スタチン、β遮断薬による内科的治療を行い、循環器内科外来でフォローアップします。
+387,"I found an unexpected adhesion here from the prior surgery, so the dissection is taking longer than planned — please inform the family.",以前の手術による予期せぬ癒着があったため、剥離に予定より時間がかかっています、家族に知らせてください。
+388,"The MRI shows multiple ring-enhancing lesions in the brain, raising concern for either CNS lymphoma or metastatic disease in this immunocompromised patient.",MRIで脳内に複数のリング状増強病変が見られ、免疫不全患者における中枢神経系リンパ腫または転移性疾患の懸念が高まります。
+389,The adrenal insufficiency was likely precipitated by the abrupt discontinuation of high-dose steroids that had been prescribed for two months.,副腎不全は、2ヶ月間処方されていた高用量ステロイドの急激な中止によって引き起こされた可能性が高いです。
+390,We should obtain blood cultures and start empiric antibiotics before LP in this infant.,この乳児において、腰椎穿刺（LP）の前に血液培養を採取し、経験的抗菌薬を開始すべきです。
+391,"The CT pulmonary angiogram confirmed bilateral pulmonary emboli, so we need to start anticoagulation therapy without further delay.",CT肺血管造影で両側肺塞栓が確認されたため、遅滞なく抗凝固療法を開始する必要があります。
+392,"Your diabetes management has been a bit challenging in the hospital setting, so we'd like to involve our endocrinology team.",病院環境でのあなたの糖尿病管理が少し難航しているため、内分泌科チームにも介入してもらいたいと考えています。
+393,"Given the STEMI on EKG, we are activating the cath lab now — please notify the interventional cardiology team and get consent signed.",心電図上のSTEMIを考慮し、現在カテ室を稼働させています。インターベンションチームに連絡し、同意書にサインをもらってください。
+394,GCS is currently eight.,GCSは現在8です。
+395,The patient presents with acute onset severe epigastric pain radiating to the back.,患者は、背中に放散する急性発症の重度な心窩部痛を呈しています。
+396,"The patient's temperature has been dropping, so please make sure the warming blanket is functioning and the room temperature is adjusted.",患者の体温が下がってきているので、温風ブランケットが機能しているか確認し、室温を調整してください。
+397,The bone marrow biopsy result showing 30% blasts confirms the diagnosis of AML and we should begin induction chemotherapy planning.,骨髄生検の結果、30%の芽球が認められAMLの診断が確定したため、寛解導入療法の計画を開始すべきです。
+398,The patient has a prior history of three-vessel coronary artery disease and underwent CABG surgery approximately five years ago.,患者には3枝の冠動脈疾患の既往があり、約5年前にCABG（冠動脈バイパス術）を受けました。
+399,Have you vomited today?,今日は嘔吐しましたか？
+400,"The 2-year-old presents with a febrile seizure, and while the prognosis is generally good, we need to rule out serious bacterial infection and meningitis.",2歳児が熱性けいれんで受診しています。予後は一般的に良好ですが、重篤な細菌感染症や髄膜炎を除外する必要があります。
+401,Do you have a history of heart disease or prior surgeries?,心疾患の既往や手術歴はありますか？
+402,Your appetite has been poor.,食欲が落ちていますね。
+403,"Before starting chemotherapy, we need to ensure the patient has adequate cardiac, renal, and liver function to tolerate the regimen.",化学療法を開始する前に、患者がレジメンに耐え得る十分な心機能、腎機能、および肝機能を有していることを確認する必要があります。
+404,Cortisol levels are very low.,コルチゾール値が非常に低いです。
+405,"Before surgery, we need medical clearance, anesthesia evaluation, and VTE prophylaxis planning, as this patient is high risk for perioperative complications.",この患者は周術期合併症の高リスクであるため、手術前に内科的クリアランス（術前評価）、麻酔科の評価、静脈血栓塞栓症（VTE）予防の計画が必要です。
+406,"Given the patient's functional status and bone quality, orthopedics recommends proceeding with total hip arthroplasty rather than hemiarthroplasty for better long-term outcomes.",患者の機能状態と骨質を考慮し、整形外科は長期的な予後を良くするために人工股関節全置換術を推奨しています。
+407,"The patient's BNP is markedly elevated, suggesting decompensated heart failure as the primary diagnosis.",患者のBNPは著明に上昇しており、主病名として非代償性心不全が示唆されます。
+408,"The PFT results show a post-bronchodilator FEV1/FVC ratio below 0.7, which is consistent with a diagnosis of obstructive lung disease.",呼吸機能検査（PFT）の結果、気管支拡張薬吸入後の1秒率が0.7未満であり、これは閉塞性肺疾患の診断に一致します。
+409,Cough started three weeks ago.,咳は3週間前に始まりました。
+410,The infant has been feeding poorly and is more lethargic than usual since yesterday.,昨日から、乳児の哺乳力が低下し、普段より傾眠傾向（ぐったりしている）です。
+411,When was the last time you ate or drank anything today?,今日、最後に飲食をしたのはいつですか？
+412,Platelet count needs urgent review.,血小板数の緊急な確認が必要です。
+413,The nephrotic syndrome presentation with massive proteinuria and anasarca warrants a kidney biopsy to confirm the underlying histological diagnosis.,大量の蛋白尿と全身浮腫を伴うネフローゼ症候群は、根本的な組織学的診断を確定するための腎生検を必要とします。
+414,"The ECG shows a new left bundle branch block, which in this clinical context should be treated as a STEMI equivalent.",心電図は新規の左脚ブロックを示しており、この臨床的背景においてはSTEMI相当として治療すべきです。
+415,"The Coombs test came back positive, confirming autoimmune hemolytic anemia as the diagnosis.",クームス試験が陽性となり、自己免疫性溶血性貧血の診断が確定しました。
+416,We should review the imaging before making any further decisions.,今後の決定を下す前に、画像所見を再確認すべきです。
+417,The patient requires continuous EEG monitoring given the concern for non-convulsive status.,非痙攣性てんかん重積状態の懸念があるため、患者には持続脳波モニタリングが必要です。
+418,"The spinal cord compression seen on MRI requires urgent neurosurgical evaluation, and we should also initiate high-dose dexamethasone to reduce inflammation.",MRIで見られる脊髄圧迫は緊急の脳神経外科的評価を必要とし、炎症を抑えるために高用量のデキサメタゾンも開始すべきです。
+419,The family is requesting an update after morning rounds today.,家族が今日の午前回診後の状況説明を求めています。
+420,Let's discuss the risks and benefits of pursuing a bronchoscopic biopsy versus empiric treatment for this cavitary lung lesion.,この空洞性肺病変に対して、気管支鏡下生検を行うか経験的治療を行うかのリスクと利益について話し合いましょう。
+421,"Before discharge, I want to make sure the patient understands the sick-day rules for insulin management and when to seek emergency care for DKA symptoms.",退院前に、インスリン管理のためのシックデイルールと、DKAの症状が出た際にいつ救急受診すべきかを患者が理解しているか確認したいです。
+422,We need to discuss the timing and feasibility of allogeneic stem cell transplantation with the patient and their family today.,今日、同種造血幹細胞移植のタイミングと実現可能性について、患者および家族と話し合う必要があります。
+423,"The patient presented with acute onset crushing chest pain radiating to the left arm and jaw, associated with diaphoresis and nausea.",患者は、発汗と吐き気を伴う、左腕と顎へ放散する急性発症の押し潰されるような胸痛で受診しました。
+424,"The patient has persistent knee pain with mechanical symptoms, and the MRI confirms a medial meniscal tear that may benefit from arthroscopic surgery.",患者には機械的症状を伴う持続的な膝の痛みがあり、MRIで関節鏡下手術の恩恵を受ける可能性のある内側半月板断裂が確認されています。

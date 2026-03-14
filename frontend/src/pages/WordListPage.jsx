@@ -4,7 +4,7 @@ import { TTSService } from '../utils/speech';
 
 const tts = new TTSService();
 
-export function WordListPage({ onSelectWord }) {
+function WordListPage({ onSelectWord }) {
   const [bookmarks, setBookmarks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -168,3 +168,5 @@ function ActionBtn({ color, onClick, children }) {
     </button>
   );
 }
+
+export default WordListPage;

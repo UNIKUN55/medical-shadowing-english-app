@@ -1,10 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import LoginPage from './pages/LoginPage'; 
-import { HomePage } from './pages/HomePage';
-import { ShadowingPage } from './pages/ShadowingPage';
-import { WordListPage } from './pages/WordListPage';
-import { WordDetailModal } from './components/WordDetailModal';
+import HomePage from './pages/HomePage';
+import CategoryPage from './pages/CategoryPage';
+import ShadowingPage from './pages/ShadowingPage';
+import WordListPage from './pages/WordListPage';
+import WordDetailModal from './components/WordDetailModal';
 import { useInteractiveBackground } from './hooks/useInteractiveBackground';
 
 function Header({ user, currentPage, onNavigate, onLogout }) {
@@ -111,6 +112,7 @@ function MainApp() {
   const { user, logout } = useAuth();
   const [page, setPage] = useState('home');
   const [scenarioId, setScenarioId] = useState(null);
+  const [categoryId, setCategoryId] = useState(null);
   const [word, setWord] = useState(null);
   const [wordModal, setWordModal] = useState(false);
 
@@ -120,7 +122,14 @@ function MainApp() {
         <Header user={user} currentPage={page} onNavigate={setPage} onLogout={logout} />
       )}
       {page === 'home' && (
-        <HomePage onSelectScenario={id => { setScenarioId(id); setPage('shadowing'); }} />
+        <HomePage onSelectCategory={id => { setCategoryId(id); setPage('category'); }} />
+      )}
+      {page === 'category' && categoryId && (
+        <CategoryPage 
+          categoryId={categoryId}
+          onSelectScenario={id => { setScenarioId(id); setPage('shadowing'); }}
+          onBack={() => { setPage('home'); setCategoryId(null); }}
+        />
       )}
       {page === 'wordlist' && (
         <WordListPage onSelectWord={b => { setWord(b); setWordModal(true); }} />
@@ -161,8 +170,6 @@ function LoadingScreen() {
     </div>
   );
 }
-
-
 
 function AppContent() {
   const { user, loading, setUser } = useAuth();

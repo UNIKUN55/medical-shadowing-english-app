@@ -14,7 +14,7 @@ function SecLabel({ children, color = 'var(--cyan)' }) {
   );
 }
 
-export function WordDetailModal({ bookmark, isOpen, onClose, onDeleted }) {
+function WordDetailModal({ bookmark, isOpen, onClose, onDeleted }) {
   const [recording, setRecording] = useState(false);
   const [recognized, setRecognized] = useState('');
   const [error, setError] = useState('');
@@ -160,3 +160,5 @@ function CloseBtn({ onClick }) {
     </button>
   );
 }
+
+export default WordDetailModal;
